@@ -1,18 +1,20 @@
-import { Text, View, Image } from "react-native";
+import { Text, View, Image, Pressable } from "react-native";
 import React from 'react'
 import styles from './styles'
 import { AntDesign } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
+
 
 const CoinItem = ({coinData}) => {
-    const{
-        market_cap_rank, name, symbol, current_price, price_change_percentage_24h, market_cap, image
+  const navigation = useNavigation();
+
+  const{
+        id, market_cap_rank, name, symbol, current_price, price_change_percentage_24h, market_cap, image
     }=coinData;
 
     const priceChangeColor = price_change_percentage_24h > 0 ? '#34C759' : '#FF3B30';
 
     const normalizeMarketCap = (market_cap) => {
-        console.log(market_cap);
-        console.log(symbol)
         if( market_cap > 1_000_000_000_000){
             return `${Math.floor(market_cap / 1_000_000_000_000)}T`
         } if( market_cap > 1_000_000_000){
@@ -25,7 +27,7 @@ const CoinItem = ({coinData}) => {
         return market_cap;
     }
   return (
-    <View style={styles.coinContainer}>
+    <Pressable style={styles.coinContainer} onPress={()=>navigation.navigate("CoinDetailsScreen", {coinId:id})}>
     <Image
     
       style={{ height: 30, aspectRatio: 1, marginRight: 10, alignSelf: 'center' }}
@@ -53,7 +55,7 @@ const CoinItem = ({coinData}) => {
       <Text style={styles.title}>${current_price.toLocaleString('en-US', {currency: 'USD'})}</Text>
       <Text style={styles.text}>MCap {normalizeMarketCap(market_cap)}</Text>
     </View>
-  </View>
+  </Pressable>
     )
 }
 

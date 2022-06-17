@@ -2,13 +2,21 @@ import { StyleSheet, Text, View, Image } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import HomeScreen from "./src/Screens/HomeScreen";
 import CoindDetailsScreen from "./src/Screens/CoinDetailsScreen";
+import Navigation from "./src/Navigation";
+import { NavigationContainer } from "@react-navigation/native";
 
 export default function App() {
   return (
+    <NavigationContainer theme={{
+       colors:{
+        background:'#121212'
+       }
+    }}>
     <View style={styles.container}>
-      <CoindDetailsScreen/>
+      <Navigation/>
       <StatusBar style="light" />
     </View>
+    </NavigationContainer>
   );
 }
 

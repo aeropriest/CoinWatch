@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {Dimensions, View, Text, TextInput} from 'react-native';
 import CoinDetails from  '../../../assets/data/crypto.json'
 import CoinDetailsHeader from "./components/CoinDetailsHeader";
@@ -6,28 +6,61 @@ import styles from "./styles";
 import { AntDesign } from "@expo/vector-icons";
 import {ChartDot, ChartPath, ChartPathProvider, ChartYLabel, monotoneCubicInterpolation} from '@rainbow-me/animated-charts';
 
+import { useRoute } from "@react-navigation/native";
+import { getCoinData, getCoinMarketData} from '../../services/CryptoServices'
+import { ActivityIndicator } from "react-native";
+
 const CoindDetailsScreen = () => {
+
+    const route = useRoute();
+    const {params:{coinId}} = route;
+
+    const [loadingCoin, setLoadingCoin] = useState(true);
+    const [coinValue, setCoinValue] = useState("1");
+    const [usdValue, setUsdValue] = useState("");
+
+     const fetchCoinData = async () => {
+        setLoadingCoin(true);
+        const fetchCoinData = await getCoinData(coinId)
+        const fetchCoinMarketData = await getCoinMarketData(coinId)
+        setCoinData(fetchCoinData);        
+        setCoinMarketData(fetchCoinMarketData)
+        setLoadingCoin(false);
+        setUsdValue(fetchCoinData.market_data.current_price.usd)
+     }
+     const [coinData, setCoinData] = useState("this is test coind data");
+     const [coinMarketData, setCoinMarketData] = useState("this is test coin market");
+ 
+    useEffect(()=>{
+        fetchCoinData();
+    },[])
+
+    if( loadingCoin || !coinData || !coinMarketData ){
+        return <ActivityIndicator size="large"/>
+    }
+    console.log('-------coinMarketData------')
+    console.log(coinMarketData);
+
     const {
         image:{ small }, 
         name, 
         symbol, 
-        prices,
         market_data:{
             market_cap_rank, 
             current_price,
             price_change_percentage_24h,
         } 
-    } = CoinDetails;
-  
-    const [coinValue, setCoinValue] = useState(1);
-    const [usdValue, setUsdValue] = useState(current_price.usd);
+    } = coinData;    
+
+    
+    
+
 
     const priceChangeColor = price_change_percentage_24h > 0 ? '#34C759' : '#FF3B30';
-
-    const charColor = current_price.usd < prices[0][1] ? '#ea3943' : '#16c784';
-
+    const charColor = current_price.usd < coinMarketData.prices[0][1] ? '#ea3943' : '#16c784';
     const screenWidth = Dimensions.get('window').width;
 
+    
     const changeCoinValue = (value) => {
         setCoinValue(value);
         setUsdValue(value * current_price.usd)
@@ -47,11 +80,12 @@ const CoindDetailsScreen = () => {
         return `$${showPrice.toLocaleString('en-US', {currency: 'USD'})}`;
     }
 
+
     return(
         <View style={{paddingHorizontal:10}}>
             <ChartPathProvider 
             data={{
-                points: prices.map(([x,y])=>({x,y}
+                points: coinMarketData.prices.map(([x,y])=>({x,y}
                 )), 
                 smoothingStrategy: 'bezier' }}>
 
@@ -82,7 +116,7 @@ const CoindDetailsScreen = () => {
                             name={price_change_percentage_24h < 0 ? "caretdown" : "caretup"}
                             size={10}
                             color='white'
-                            style={{ alignSelf: "center", marginRight: 5 }}
+                            style={{ alignSelf: "center", marginRight: 5 }}                            
                         />
                         <Text style={styles.change}>{price_change_percentage_24h.toFixed(2)}%</Text>                
                     </View>

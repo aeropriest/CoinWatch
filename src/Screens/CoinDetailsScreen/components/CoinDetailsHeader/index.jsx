@@ -3,13 +3,15 @@ import React from 'react'
 import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import styles from './styles';
+import { useNavigation } from "@react-navigation/native";
 
 
 const CoinDetailsHeader = (props) => {    
+    const navigation = useNavigation();
     const {image, name, symbol, marketCapRank} = props;
   return (
         <View style={styles.header}>
-            <Ionicons name="chevron-back" size={30} color="white" />
+            <Ionicons name="chevron-back" size={30} color="white" onPress={()=>navigation.goBack()}/>
             <View style={styles.ticker}>
                 <Image
                     source={{uri: image}} 
