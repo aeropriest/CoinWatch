@@ -1,9 +1,11 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import HomeScreen from "./src/Screens/HomeScreen";
-import CoindDetailsScreen from "./src/Screens/CoinDetailsScreen";
+import CoinDetailedScreen from "./src/Screens/CoinDetailedScreen";
 import Navigation from "./src/Navigation";
 import { NavigationContainer } from "@react-navigation/native";
+import BottomTabNavigator from "./src/Navigation/BottomTabNavigator";
+import WatchListProvider from "./src/Context/WatchListContext";
 
 export default function App() {
   return (
@@ -12,10 +14,12 @@ export default function App() {
         background:'#121212'
        }
     }}>
-    <View style={styles.container}>
-      <Navigation/>
-      <StatusBar style="light" />
-    </View>
+      <WatchListProvider>
+        <View style={styles.container}>
+          <Navigation/>
+          <StatusBar style="light" />
+        </View>
+      </WatchListProvider>
     </NavigationContainer>
   );
 }
