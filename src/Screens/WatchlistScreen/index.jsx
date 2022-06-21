@@ -15,8 +15,7 @@ const WatchlistScreen = () => {
   const transformCoinsIds = () => watchListCoinsId.join("%2C");
 
   const fetchWatchListCoinsData = async () => {
-    console.log(" what is in watchListCoinsId ", watchListCoinsId.length);
-    if (loadingData || !watchListCoinsId.length) return;
+    if (loadingData) return;
     setLoadingData(true);
     const watchListedCoinsData = await getWatchListData(1, transformCoinsIds());
     setCoinsData(watchListedCoinsData);
@@ -25,7 +24,7 @@ const WatchlistScreen = () => {
 
   useEffect(() => {
     fetchWatchListCoinsData();
-  }, []);
+  }, [watchListCoinsId]);
 
   // useEffect(() => {}, [watchListCoinsId]);
 

@@ -19,7 +19,7 @@ const CoinItem = ({ coinData }) => {
   } = coinData;
 
   const priceChangeColor =
-    price_change_percentage_24h > 0 ? "#34C759" : "#FF3B30";
+    price_change_percentage_24h > 0 ? "#34C759" : "#FF3B30" || "white";
 
   const normalizeMarketCap = (market_cap) => {
     if (market_cap > 1_000_000_000_000) {
@@ -66,7 +66,7 @@ const CoinItem = ({ coinData }) => {
             style={{ alignSelf: "center", marginRight: 5 }}
           />
           <Text style={[styles.text, { color: priceChangeColor }]}>
-            {price_change_percentage_24h.toFixed(2)}%
+            {price_change_percentage_24h?.toFixed(2)}%
           </Text>
         </View>
       </View>

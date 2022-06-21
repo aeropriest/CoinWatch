@@ -6,6 +6,8 @@ import CoinDetailedScreen from "../Screens/CoinDetailedScreen";
 import { Entypo } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import WatchlistScreen from "../Screens/WatchlistScreen";
+import { Foundation } from "@expo/vector-icons";
+import PortfolioScreen from "../Screens/PortfolioScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -29,6 +31,19 @@ const BottomTabNavigator = () => {
         options={{
           tabBarIcon: ({ focused, color }) => (
             <Entypo name="home" size={focused ? 30 : 24} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="PortfolioScreen"
+        component={PortfolioScreen}
+        options={{
+          tabBarIcon: ({ focused, color }) => (
+            <Foundation
+              name="graph-pie"
+              size={focused ? 35 : 30}
+              color={color}
+            />
           ),
         }}
       />

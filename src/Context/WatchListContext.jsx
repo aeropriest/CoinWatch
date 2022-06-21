@@ -14,7 +14,6 @@ const WatchListProvider = ({ children }) => {
       const jsonValue = JSON.stringify(newWatchList);
       await AsyncStorage.setItem("@watchlist_coins", jsonValue);
       setWatchListCoinsId(newWatchList);
-      console.log(newWatchList);
     } catch (e) {
       console.log(e);
     }

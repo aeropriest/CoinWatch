@@ -61,7 +61,7 @@ const CoinDetailedScreen = () => {
   } = coinData;
 
   const priceChangeColor =
-    price_change_percentage_24h > 0 ? "#34C759" : "#FF3B30";
+    price_change_percentage_24h > 0 ? "#34C759" : "#FF3B30" || "white";
   const charColor =
     current_price.usd < coinMarketData.prices[0][1] ? "#ea3943" : "#16c784";
   const screenWidth = Dimensions.get("window").width;
@@ -122,7 +122,7 @@ const CoinDetailedScreen = () => {
               style={{ alignSelf: "center", marginRight: 5 }}
             />
             <Text style={styles.change}>
-              {price_change_percentage_24h.toFixed(2)}%
+              {price_change_percentage_24h?.toFixed(2)}%
             </Text>
           </View>
         </View>
