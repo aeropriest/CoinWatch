@@ -5,7 +5,7 @@ import { AntDesign } from "@expo/vector-icons";
 
 const PortfolioAssetItem = ({ assetItem }) => {
   const totalHolding = () => {
-    return (qtyBought * priceBought).toFixed(2);
+    return (quantityBought * priceBought).toFixed(2);
   };
   const priceChangeColor =
     priceChangePercentage > 0 ? "#34C759" : "#FF3B30" || "white";
@@ -15,7 +15,7 @@ const PortfolioAssetItem = ({ assetItem }) => {
     name,
     image,
     ticker,
-    qtyBought,
+    quantityBought,
     priceBought,
     priceChangePercentage,
     currentPrice,
@@ -35,7 +35,7 @@ const PortfolioAssetItem = ({ assetItem }) => {
       <View style={{ marginLeft: "auto" }}>
         <Text style={styles.title}>
           $
-          {priceBought.toLocaleString("en-US", {
+          {priceBought?.toLocaleString("en-US", {
             currency: "USD",
           })}
         </Text>
@@ -53,7 +53,7 @@ const PortfolioAssetItem = ({ assetItem }) => {
               fontWeight: "600",
             }}
           >
-            {priceChangePercentage.toFixed(2)}%
+            {priceChangePercentage}%
           </Text>
         </View>
       </View>
@@ -65,7 +65,7 @@ const PortfolioAssetItem = ({ assetItem }) => {
           })}
         </Text>
         <Text style={styles.symbol}>
-          {qtyBought} {ticker}
+          {quantityBought} {ticker}
         </Text>
       </View>
     </View>

@@ -2,21 +2,22 @@ import { atom, selector } from "recoil";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getWatchListData } from "../services/CryptoServices";
 
-export const allPortfolioAssetsBought = selector({
-  key: "allPortfolioAssetsBought",
+export const allPortfolioBoughtAssets = selector({
+  key: "allPortfolioBoughtAssets",
   get: async () => {
-    console.log("--------allPortfolioAssetsBought selector------");
     const jsonValue = await AsyncStorage.getItem("@portfolio_coins");
     return jsonValue != null ? JSON.parse(jsonValue) : [];
   },
 });
 
-export const allPortfolioAssetsBoughtAPI = selector({
-  key: "allPortfolioAssetsBoughtAPI",
+export const allPortfolioBoughtAssetsFromAPI = selector({
+  key: "allPortfolioBoughtAssetsFromAPI",
   get: async ({ get }) => {
-    const boughtPortfolioAssets = get(allPortfolioAssetsSaved);
-    console.log("------allPortfolioAssetsBoughtAPI");
-    console.log(boughtPortfolioAssets);
+    const boughtPortfolioAssets = get(allPortfolioBoughtAssetsInStorage);
+    console.log(
+      "---------allPortfolioBoughtAssetsFromAPI---------",
+      boughtPortfolioAssets
+    );
     const portfolioAssetsMarketData = await getWatchListData(
       1,
       boughtPortfolioAssets.map((portfolioAsset) => portfolioAsset.id).join(",")
@@ -43,10 +44,10 @@ export const allPortfolioAssetsBoughtAPI = selector({
 
 export const allPortfolioAssets = atom({
   key: "allPortfolioAssets",
-  default: allPortfolioAssetsBoughtAPI,
+  default: allPortfolioBoughtAssetsFromAPI,
 });
 
-export const allPortfolioAssetsSaved = atom({
-  key: "allPortfolioAssetsSaved",
-  default: allPortfolioAssetsBought,
+export const allPortfolioBoughtAssetsInStorage = atom({
+  key: "allPortfolioBoughtAssetsInStorage",
+  default: allPortfolioBoughtAssets,
 });

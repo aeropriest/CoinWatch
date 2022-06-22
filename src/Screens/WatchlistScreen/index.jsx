@@ -6,8 +6,7 @@ import { getWatchListData } from "../../services/CryptoServices";
 import { RefreshControl } from "react-native";
 
 const WatchlistScreen = () => {
-  const { watchListCoinsId, saveWatchListCoinId, removeWatchListCoinId } =
-    useWatchList();
+  const { watchListCoinsId } = useWatchList();
 
   const [coinsData, setCoinsData] = useState([]);
   const [loadingData, setLoadingData] = useState(false);
@@ -25,8 +24,6 @@ const WatchlistScreen = () => {
   useEffect(() => {
     fetchWatchListCoinsData();
   }, [watchListCoinsId]);
-
-  // useEffect(() => {}, [watchListCoinsId]);
 
   return (
     <FlatList

@@ -18,13 +18,13 @@ const PortfolioAssetsList = () => {
   const getCurrentBalance = () =>
     assets.reduce(
       (total, currentAsset) =>
-        total + currentAsset.currentPrice * currentAsset.qtyBought,
+        total + currentAsset.currentPrice * currentAsset.quantityBought,
       0
     );
   const getBoughtBalance = () =>
     assets.reduce(
       (total, currentAsset) =>
-        total + currentAsset.priceBought * currentAsset.qtyBought,
+        total + currentAsset.priceBought * currentAsset.quantityBought,
       0
     );
 
@@ -57,12 +57,11 @@ const PortfolioAssetsList = () => {
                 style={{
                   ...styles.valueChanged,
                   color:
-                    getPercetangeChange() > 0
+                    getPercetangeChange().toFixed(2) > 0
                       ? "#34C759"
                       : "#FF3B30" || "white",
                 }}
               >
-                $
                 {getCurrentChange().toLocaleString("en-US", {
                   currency: "USD",
                 })}{" "}
@@ -96,16 +95,7 @@ const PortfolioAssetsList = () => {
             style={styles.buttonContainer}
             onPress={() => navigation.navigate("AddNewAssetScreen")}
           >
-            <Text style={styles.buttonText}>Add new assets</Text>
-          </Pressable>
-          <Pressable
-            style={styles.buttonContainer}
-            onPress={() => {
-              console.log("clear the storeage");
-              AsyncStorage.getAllKeys().then(AsyncStorage.multiRemove);
-            }}
-          >
-            <Text style={styles.buttonText}>Clear Assets</Text>
+            <Text style={styles.buttonText}>Add New Asset</Text>
           </Pressable>
         </>
       }
