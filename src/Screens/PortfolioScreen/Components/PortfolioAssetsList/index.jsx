@@ -2,18 +2,27 @@ import { View, Text, FlatList, Pressable } from "react-native";
 import React from "react";
 import { AntDesign } from "@expo/vector-icons";
 import styles from "./styles";
-import ProtfolioAssetsItem from "../PortfolioAssetsItem";
+import PortfolioAssetItem from "../PortfolioAssetsItem";
 import { useNavigation } from "@react-navigation/native";
+// import { useRecoilValue, useRecoilState } from "recoil";
+// import {
+//   allPortfolioAssets,
+//   allPortfolioAssetsBought,
+// } from "../../../../atoms/PortfolioAssets";
 
 const PortfolioAssetsList = () => {
   const navigation = useNavigation();
+
+  //  const assets = useRecoilValue(allPortfolioAssets);
+
+  //console.log("all assets bought are ", assets);
   const price_change_percentage_24h = 1.0;
-  console.log("assets list loaded");
+  //console.log("assets list loaded");
   return (
     <View>
       <FlatList
-        data={[{ id: "bitcoin" }, { id: "solana" }]}
-        renderItem={({ item }) => <ProtfolioAssetsItem assetItem={item} />}
+        data={[1, 2, 3]}
+        renderItem={({ item }) => <PortfolioAssetItem assetItem={item} />}
         ListHeaderComponent={
           <>
             <View style={styles.balanceContainer}>

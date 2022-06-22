@@ -6,6 +6,7 @@ import Navigation from "./src/Navigation";
 import { NavigationContainer } from "@react-navigation/native";
 import BottomTabNavigator from "./src/Navigation/BottomTabNavigator";
 import WatchListProvider from "./src/Context/WatchListContext";
+import {RecoilRoot} from 'recoil'
 
 export default function App() {
   return (
@@ -14,12 +15,14 @@ export default function App() {
         background:'#121212'
        }
     }}>
+      <RecoilRoot>
       <WatchListProvider>
         <View style={styles.container}>
           <Navigation/>
           <StatusBar style="light" />
         </View>
       </WatchListProvider>
+      </RecoilRoot>
     </NavigationContainer>
   );
 }

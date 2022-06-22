@@ -3,10 +3,15 @@ import React from "react";
 import styles from "./styles";
 import { AntDesign } from "@expo/vector-icons";
 
-const ProtfolioAssetsItem = () => {
+const PortfolioAssetItem = () => {
   return (
     <View style={styles.coinContainer}>
-      <Image source={{ uri: "" }} style={{ height: 30, width: 30 }} />
+      <Image
+        source={{
+          uri: "https://cdn-icons-png.flaticon.com/512/1490/1490849.png",
+        }}
+        style={{ height: 30, width: 30 }}
+      />
       <View>
         <Text style={styles.title}>Bitcoin</Text>
         <Text style={styles.symbol}>BTC</Text>
@@ -31,4 +36,4 @@ const ProtfolioAssetsItem = () => {
   );
 };
 
-export default ProtfolioAssetsItem;
+export default PortfolioAssetItem;

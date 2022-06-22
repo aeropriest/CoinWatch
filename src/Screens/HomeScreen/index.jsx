@@ -1,6 +1,5 @@
 import { FlatList } from "react-native";
 import React from "react";
-import styles from "./styles";
 import CoinItem from "../../components/CoinItem";
 import { RefreshControl } from "react-native";
 import { useEffect, useState } from "react";
