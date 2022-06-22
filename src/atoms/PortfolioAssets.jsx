@@ -14,20 +14,22 @@ export const allPortfolioAssetsBought = selector({
 export const allPortfolioAssetsBoughtAPI = selector({
   key: "allPortfolioAssetsBoughtAPI",
   get: async ({ get }) => {
-    const savedPortfolioAssets = get(allPortfolioAssetsSaved);
+    const boughtPortfolioAssets = get(allPortfolioAssetsSaved);
+    console.log("------allPortfolioAssetsBoughtAPI");
+    console.log(boughtPortfolioAssets);
     const portfolioAssetsMarketData = await getWatchListData(
       1,
-      savedPortfolioAssets.map((portfolioAsset) => portfolioAsset.id).join(",")
+      boughtPortfolioAssets.map((portfolioAsset) => portfolioAsset.id).join(",")
     );
 
-    const boughtAssets = portfolioAssetsMarketData.map((boughtAsset) => {
+    const boughtAssets = boughtPortfolioAssets.map((boughtAsset) => {
       const portfolioAsset = portfolioAssetsMarketData.filter(
         (item) => boughtAsset.id === item.id
       )[0];
       return {
         ...boughtAsset,
         currentPrice: portfolioAsset.current_price,
-        priceChangePercentage: portfolioAsset.price_change_percentage_24,
+        priceChangePercentage: portfolioAsset.price_change_percentage_24h,
       };
     });
 
@@ -38,6 +40,7 @@ export const allPortfolioAssetsBoughtAPI = selector({
     );
   },
 });
+
 export const allPortfolioAssets = atom({
   key: "allPortfolioAssets",
   default: allPortfolioAssetsBoughtAPI,

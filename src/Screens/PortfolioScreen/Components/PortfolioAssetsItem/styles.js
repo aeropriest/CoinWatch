@@ -9,7 +9,8 @@ const styles = StyleSheet.create({
         color:'white',
         fontWeight: 'bold',
         fontSize: 16,
-    },
+        alignSelf: 'flex-end',
+        },
     symbol:{
         color: 'grey',
         fontWeight: '600',
@@ -17,8 +18,7 @@ const styles = StyleSheet.create({
     qtyContainer:{
         marginLeft: 'auto',
         alignItems: 'flex-end'
-    }
-
+    },
 })
 
 export default styles;

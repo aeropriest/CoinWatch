@@ -30,7 +30,6 @@ const AddNewAssetScreen = () => {
   };
 
   const fetchCoinInfo = async (selectedCoinId) => {
-    console.log("--------selectedCoin---------", selectedCoinId);
     if (loading || !selectedCoinId) return;
     setLoading(true);
     const coinInfo = await getCoinInfo(selectedCoinId);
@@ -57,10 +56,11 @@ const AddNewAssetScreen = () => {
       ticker: selectedCoin?.symbol.toUpperCase(),
       qtyBought: parseFloat(boughtAssetQty),
       priceBought: selectedCoin?.market_data.current_price.usd,
+      percentChange: selectedCoin.price_change_percentage_24h,
     };
     const newAssets = [...assetsSaved, newAsset];
     const jsonValue = JSON.stringify(newAssets);
-    console.log("-----new assets-----", newAsset);
+    console.log("-----new assets-----", jsonValue);
     await AsyncStorage.setItem("@portfolio_coins", jsonValue);
     setAssetsSaved(newAsset);
     navigation.goBack();
@@ -103,7 +103,7 @@ const AddNewAssetScreen = () => {
         />
       </Suspense>
 
-      {selectedCoinId && (
+      {selectedCoin && (
         <>
           <View style={styles.boughtQtyContainer}>
             <View style={{ flexDirection: "row" }}>
