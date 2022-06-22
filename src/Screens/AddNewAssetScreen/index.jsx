@@ -55,8 +55,9 @@ const AddNewAssetScreen = () => {
       image: selectedCoin?.image.small,
       ticker: selectedCoin?.symbol.toUpperCase(),
       qtyBought: parseFloat(boughtAssetQty),
-      priceBought: selectedCoin?.market_data.current_price.usd,
-      percentChange: selectedCoin.price_change_percentage_24h,
+      currentPrice: selectedCoin?.currentPrice,
+      percentChange: selectedCoin?.price_change_percentage_24h,
+      priceBought: selectedCoin?.priceBought,
     };
     const newAssets = [...assetsSaved, newAsset];
     const jsonValue = JSON.stringify(newAssets);

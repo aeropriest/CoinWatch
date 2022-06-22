@@ -14,12 +14,11 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const PortfolioAssetsList = () => {
   const navigation = useNavigation();
   const assets = useRecoilValue(allPortfolioAssets);
-  const price_change_percentage_24h = 1.0;
 
   const getCurrentBalance = () =>
     assets.reduce(
       (total, currentAsset) =>
-        total + currentAsset.priceBought * currentAsset.qtyBought,
+        total + currentAsset.currentPrice * currentAsset.qtyBought,
       0
     );
   const getBoughtBalance = () =>
@@ -30,13 +29,13 @@ const PortfolioAssetsList = () => {
     );
 
   const getCurrentChange = () => {
-    return getCurrentBalance() + 188 - getBoughtBalance();
+    return getCurrentBalance() - getBoughtBalance();
   };
 
   const getPercetangeChange = () => {
     return (
-      ((getCurrentBalance() + 188 - getBoughtBalance()) / getBoughtBalance()) *
-        100 || 0
+      ((getCurrentBalance() - getBoughtBalance()) / getBoughtBalance()) * 100 ||
+      0
     );
   };
   return (

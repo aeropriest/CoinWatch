@@ -18,6 +18,7 @@ const PortfolioAssetItem = ({ assetItem }) => {
     qtyBought,
     priceBought,
     priceChangePercentage,
+    currentPrice,
   } = assetItem;
   return (
     <View style={styles.coinContainer}>
