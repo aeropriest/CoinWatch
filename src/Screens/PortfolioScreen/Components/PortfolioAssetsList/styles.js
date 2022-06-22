@@ -12,8 +12,7 @@ const styles = StyleSheet.create({
     currentBalance:{
         color: 'white',
         fontWeight: '600',
-        fontSize: 15,
-    },
+        fontSize: 15,    },
     currentBalanceValue:{
         color: 'white',
         fontWeight: '700',
@@ -29,6 +28,7 @@ const styles = StyleSheet.create({
         color: 'white',
         fontWeight: '500',
         fontSize: 17,
+        
     },
     priceChangeContainer:{
         flexDirection: 'row',
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         fontSize: 23,
         fontWeight: '700',
         paddingHorizontal: 10,
-        paddingVertical: 20,
+        paddingVertical: 10,
     },
     buttonContainer:{
         backgroundColor: '#4169E1',

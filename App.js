@@ -1,14 +1,21 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 import { StatusBar } from "expo-status-bar";
-import HomeScreen from "./src/Screens/HomeScreen";
-import CoinDetailedScreen from "./src/Screens/CoinDetailedScreen";
 import Navigation from "./src/Navigation";
 import { NavigationContainer } from "@react-navigation/native";
-import BottomTabNavigator from "./src/Navigation/BottomTabNavigator";
 import WatchListProvider from "./src/Context/WatchListContext";
 import {RecoilRoot} from 'recoil'
+import { useFonts, Inter_900Black } from '@expo-google-fonts/inter';
+import { ActivityIndicator } from "react-native";
 
 export default function App() {
+  let [fontsLoaded] = useFonts({
+    Inter_900Black,
+    DroidSans: require('./assets/fonts/DroidSans.ttf')
+  });
+
+  if( !fontsLoaded)
+    return (<ActivityIndicator size='large'></ActivityIndicator>) 
+
   return (
     <NavigationContainer theme={{
        colors:{

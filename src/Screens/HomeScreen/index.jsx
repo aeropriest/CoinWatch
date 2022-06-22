@@ -1,4 +1,4 @@
-import { FlatList } from "react-native";
+import { FlatList, View, Text } from "react-native";
 import React from "react";
 import CoinItem from "../../components/CoinItem";
 import { RefreshControl } from "react-native";
@@ -30,14 +30,32 @@ const HomeScreen = () => {
   }, []);
 
   return (
-    <FlatList
-      data={coinsList}
-      onEndReached={() => {
-        fetchCoinData(coinsList.length / 50 + 1);
-      }}
-      renderItem={({ item }) => <CoinItem coinData={item} />}
-      refreshControl={<RefreshControl refreshing={loading} tintColor="white" />}
-    />
+    <View>
+      <Text
+        style={{
+          fontFamily: "DroidSans",
+          color: "white",
+          fontSize: 24,
+          letterSpacing: 1,
+          paddingHorizontal: 20,
+          paddingBottom: 5,
+          paddingTop: 15,
+        }}
+      >
+        Crypto Assets
+      </Text>
+
+      <FlatList
+        data={coinsList}
+        onEndReached={() => {
+          fetchCoinData(coinsList.length / 50 + 1);
+        }}
+        renderItem={({ item }) => <CoinItem coinData={item} />}
+        refreshControl={
+          <RefreshControl refreshing={loading} tintColor="white" />
+        }
+      />
+    </View>
   );
 };
 

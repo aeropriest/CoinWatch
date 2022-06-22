@@ -22,7 +22,8 @@ const WatchlistScreen = () => {
   };
 
   useEffect(() => {
-    fetchWatchListCoinsData();
+    console.log(watchListCoinsId.length);
+    if (watchListCoinsId.length > 0) fetchWatchListCoinsData();
   }, [watchListCoinsId]);
 
   return (

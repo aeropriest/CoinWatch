@@ -22,17 +22,17 @@ const CoinItem = ({ coinData }) => {
     price_change_percentage_24h > 0 ? "#34C759" : "#FF3B30" || "white";
 
   const normalizeMarketCap = (market_cap) => {
-    if (market_cap > 1_000_000_000_000) {
-      return `${Math.floor(market_cap / 1_000_000_000_000)}T`;
+    if (market_cap > 1e12) {
+      return `$({market_cap / 1e12).toFixed(3)}T`;
     }
-    if (market_cap > 1_000_000_000) {
-      return `${Math.floor(market_cap / 1_000_000_000)}B`;
+    if (market_cap > 1e9) {
+      return `${(market_cap / 1e9).toFixed(3)}B`;
     }
-    if (market_cap > 1_000_000) {
-      return `${Math.floor(market_cap / 1_000_000)}M`;
+    if (market_cap > 1e6) {
+      return `${(market_cap / 1e6).toFixed(3)}M`;
     }
-    if (market_cap > 1_000_000) {
-      return `${Math.floor(market_cap / 1_000_000)}K`;
+    if (market_cap > 1e3) {
+      return `${(market_cap / 1e3).toFixed(3)}K`;
     }
     return market_cap;
   };

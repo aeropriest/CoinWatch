@@ -80,7 +80,10 @@ const CoinDetailedScreen = () => {
     "worklet";
     var showPrice = value;
     if (value === "") {
-      showPrice = current_price.usd;
+      showPrice =
+        current_price.usd < 0
+          ? current_price.usd
+          : current_price.usd.toFixed(2);
     }
     return `$${showPrice.toLocaleString("en-US", { currency: "USD" })}`;
   };
