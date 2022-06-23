@@ -37,7 +37,16 @@ const styles = StyleSheet.create({
         padding: 10,
         fontSize: 16,
         color: 'white'
-      }
+      },
+      filtersContainer:{
+        flexDirection:'row',
+        justifyContent:'space-around',
+        backgroundColor:'#2b2b2b',
+        paddingVertical:5,
+        borderRadius: 5,
+        margin:10,
+      },
+      
   
   });
   

@@ -3,7 +3,7 @@ import { View, Text, TextInput, Pressable } from "react-native";
 import SearchableDropdown from "react-native-searchable-dropdown";
 import styles from "./styles";
 import { useRecoilState } from "recoil";
-import { allPortfolioBoughtAssetsInStorage } from "../../atoms/PortfolioAssets";
+import { allSavedPortfolioAssets } from "../../atoms/PortfolioAssets";
 import { getAllCoins, getCoinInfo } from "../../services/CryptoServices";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
@@ -16,7 +16,7 @@ const AddNewAssetScreen = () => {
   const [selectedCoin, setSelectedCoin] = useState(null);
 
   const [assetsInStorage, setAssetsInStorage] = useRecoilState(
-    allPortfolioBoughtAssetsInStorage
+    allSavedPortfolioAssets
   );
 
   const navigation = useNavigation();
@@ -56,6 +56,7 @@ const AddNewAssetScreen = () => {
   const onAddNewAsset = async () => {
     const newAsset = {
       id: selectedCoin.id,
+      uniqueId: selectedCoin.id + Math.random(0, 1e6),
       name: selectedCoin.name,
       image: selectedCoin.image.small,
       ticker: selectedCoin.symbol.toUpperCase(),

@@ -53,7 +53,7 @@ const PortfolioAssetItem = ({ assetItem }) => {
               fontWeight: "600",
             }}
           >
-            {priceChangePercentage}%
+            {priceChangePercentage?.toFixed(2)}%
           </Text>
         </View>
       </View>

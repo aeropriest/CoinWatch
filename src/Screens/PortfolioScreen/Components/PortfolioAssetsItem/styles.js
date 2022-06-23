@@ -4,6 +4,7 @@ const styles = StyleSheet.create({
     coinContainer:{
         flexDirection: 'row',
         padding: 15,
+        backgroundColor:'#121212'
     },
     title:{
         color:'white',
@@ -17,7 +18,7 @@ const styles = StyleSheet.create({
     },
     qtyContainer:{
         marginLeft: 'auto',
-        alignItems: 'flex-end'
+        alignItems: 'flex-end',
     },
 })
 

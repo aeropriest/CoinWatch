@@ -15,7 +15,15 @@ import {
 import { useRoute } from "@react-navigation/native";
 import { getCoinData, getCoinMarketData } from "../../services/CryptoServices";
 import { ActivityIndicator } from "react-native";
+import FilterComponent from "./components/FilterComponent";
 
+const filterDays = [
+  { filterDay: "1", filterText: "24h" },
+  { filterDay: "7", filterText: "7d" },
+  { filterDay: "30", filterText: "30d" },
+  { filterDay: "365", filterText: "1y" },
+  { filterDay: "max", filterText: "All" },
+];
 const CoinDetailedScreen = () => {
   const route = useRoute();
   const {
@@ -25,6 +33,14 @@ const CoinDetailedScreen = () => {
   const [loadingCoin, setLoadingCoin] = useState(true);
   const [coinValue, setCoinValue] = useState("1");
   const [usdValue, setUsdValue] = useState("");
+  const [selectedRange, setSelectedRange] = useState("1");
+
+  const fetchRangeCoinData = async (id, range) => {
+    console.log(fetchRangeCoinData);
+    const fetchCoinMarketData = await getCoinMarketData(id, range);
+    setCoinMarketData(fetchCoinMarketData);
+    setUsdValue(fetchCoinData?.market_data.current_price.usd);
+  };
 
   const fetchCoinData = async () => {
     setLoadingCoin(true);
@@ -33,7 +49,7 @@ const CoinDetailedScreen = () => {
     setCoinData(fetchCoinData);
     setCoinMarketData(fetchCoinMarketData);
     setLoadingCoin(false);
-    setUsdValue(fetchCoinData.market_data.current_price.usd);
+    setUsdValue(fetchCoinData?.market_data.current_price.usd);
   };
   const [coinData, setCoinData] = useState("this is test coind data");
   const [coinMarketData, setCoinMarketData] = useState(
@@ -42,6 +58,7 @@ const CoinDetailedScreen = () => {
 
   useEffect(() => {
     fetchCoinData();
+    //fetchRangeCoinData(1);
   }, []);
 
   if (loadingCoin || !coinData || !coinMarketData) {
@@ -59,6 +76,12 @@ const CoinDetailedScreen = () => {
       price_change_percentage_24h,
     },
   } = coinData;
+
+  const onSelectedRangeChange = (selectedRangeValue) => {
+    console.log("onSelectedRangeChange------", selectedRangeValue);
+    setSelectedRange(selectedRangeValue);
+    fetchRangeCoinData(coinId, selectedRangeValue);
+  };
 
   const priceChangeColor =
     price_change_percentage_24h > 0 ? "#34C759" : "#FF3B30" || "white";
@@ -93,7 +116,6 @@ const CoinDetailedScreen = () => {
       <ChartPathProvider
         data={{
           points: coinMarketData.prices.map(([x, y]) => ({ x, y })),
-          smoothingStrategy: "bezier",
         }}
       >
         <CoinDetailsHeader
@@ -128,6 +150,17 @@ const CoinDetailedScreen = () => {
               {price_change_percentage_24h?.toFixed(2)}%
             </Text>
           </View>
+        </View>
+        <View style={styles.filtersContainer}>
+          {filterDays.map((day) => (
+            <FilterComponent
+              filterDay={day.filterDay}
+              filterText={day.filterText}
+              selectedRange={selectedRange}
+              setSelectedRange={onSelectedRangeChange}
+              key={day.filterDay}
+            />
+          ))}
         </View>
         <View>
           <ChartPath

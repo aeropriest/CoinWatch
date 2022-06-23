@@ -5,15 +5,18 @@ import styles from "./styles";
 import PortfolioAssetItem from "../PortfolioAssetsItem";
 import { useNavigation } from "@react-navigation/native";
 import { useRecoilValue, useRecoilState } from "recoil";
+import { SwipeListView } from "react-native-swipe-list-view";
+import { FontAwesome } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   allPortfolioAssets,
-  allPortfolioAssetsBought,
+  allSavedPortfolioAssets,
 } from "../../../../atoms/PortfolioAssets";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const PortfolioAssetsList = () => {
   const navigation = useNavigation();
   const assets = useRecoilValue(allPortfolioAssets);
+  const [savedAssets, setSavedAssets] = useRecoilState(allSavedPortfolioAssets);
 
   const getCurrentBalance = () =>
     assets.reduce(
@@ -38,10 +41,41 @@ const PortfolioAssetsList = () => {
       0
     );
   };
+
+  const onDeleteAsset = async (asset) => {
+    const newAssets = savedAssets.filter(
+      (coin) => coin.uniqueId !== asset.item.uniqueId
+    );
+    const jsonValue = JSON.stringify(newAssets);
+    await AsyncStorage.setItem("@portfolio_coins", jsonValue);
+    setSavedAssets(newAssets);
+  };
+
+  const renderDeleteButton = (data) => {
+    return (
+      <Pressable
+        style={{
+          flex: 1,
+          backgroundColor: "#ea3943",
+          alignItems: "flex-end",
+          justifyContent: "center",
+          paddingRight: 28,
+        }}
+        onPress={() => onDeleteAsset(data)}
+      >
+        <FontAwesome name="trash-o" size={25} color="white" />
+      </Pressable>
+    );
+  };
   return (
-    <FlatList
+    <SwipeListView
       data={assets}
       renderItem={({ item }) => <PortfolioAssetItem assetItem={item} />}
+      rightOpenValue={-75}
+      disableRightSwipe
+      keyExtractor={({ id }, index) => `${id}${index}`}
+      renderHiddenItem={(data, rowMap) => renderDeleteButton(data)}
+      leftActionValue={200}
       ListHeaderComponent={
         <>
           <View style={styles.balanceContainer}>

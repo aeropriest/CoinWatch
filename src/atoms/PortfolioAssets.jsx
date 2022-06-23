@@ -13,7 +13,7 @@ export const allPortfolioBoughtAssets = selector({
 export const allPortfolioBoughtAssetsFromAPI = selector({
   key: "allPortfolioBoughtAssetsFromAPI",
   get: async ({ get }) => {
-    const boughtPortfolioAssets = get(allPortfolioBoughtAssetsInStorage);
+    const boughtPortfolioAssets = get(allSavedPortfolioAssets);
     console.log(
       "---------allPortfolioBoughtAssetsFromAPI---------",
       boughtPortfolioAssets
@@ -47,7 +47,7 @@ export const allPortfolioAssets = atom({
   default: allPortfolioBoughtAssetsFromAPI,
 });
 
-export const allPortfolioBoughtAssetsInStorage = atom({
-  key: "allPortfolioBoughtAssetsInStorage",
+export const allSavedPortfolioAssets = atom({
+  key: "allSavedPortfolioAssets",
   default: allPortfolioBoughtAssets,
 });

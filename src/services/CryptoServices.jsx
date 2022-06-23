@@ -14,9 +14,9 @@ export const getCryptoCurrencies = async (pageNumber = 1) => {
 };
 
 // get the hourly coin data for coin id
-export const getCoinMarketData = async (coinId) => {
+export const getCoinMarketData = async (coinId, range = 1) => {
   try {
-    const API_BASE_URL = `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=USD&days=1&interval=hourly`;
+    const API_BASE_URL = `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=USD&days=${range}&interval=hourly`;
     const response = await axios.get(API_BASE_URL);
     return response.data;
   } catch (err) {
