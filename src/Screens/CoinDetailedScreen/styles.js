@@ -46,8 +46,16 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         margin:10,
       },
-      
-  
+    candleStickText:{
+        color: "white", 
+        fontWeight: "700",
+    },
+    candleStickContainer:{
+        flexDirection: "row",
+        justifyContent: "space-between",
+        marginHorizontal: 10,
+        marginTop: 20,
+      }
   });
   
   export default styles;

@@ -15,6 +15,7 @@ export const getCryptoCurrencies = async (pageNumber = 1) => {
 
 // get the hourly coin data for coin id
 export const getCoinMarketData = async (coinId, range = 1) => {
+  console.log(getCoinMarketData);
   try {
     const API_BASE_URL = `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=USD&days=${range}&interval=hourly`;
     const response = await axios.get(API_BASE_URL);
@@ -65,6 +66,18 @@ export const getCoinInfo = async (coinId) => {
     //const API_BASE_URL = `https://api.coingecko.com/api/v3/simple/price?ids=${coinId}&vs_currencies=usd`;
     const API_BASE_URL = `https://api.coingecko.com/api/v3/coins/${coinId}?localization=false&tickers=true&market_data=true&community_data=false&developer_data=false&sparkline=false`;
     console.log(API_BASE_URL);
+    const response = await axios.get(API_BASE_URL);
+    return response.data;
+  } catch (err) {
+    console.log(err.message);
+  }
+};
+
+// get the coin id associated candle stick data
+export const getCoinCandleData = async (coinId, days = 1) => {
+  try {
+    const API_BASE_URL = `https://api.coingecko.com/api/v3/coins/${coinId}/ohlc?vs_currency=usd&days=${days}`;
+    //console.log(API_BASE_URL);
     const response = await axios.get(API_BASE_URL);
     return response.data;
   } catch (err) {
