@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
         backgroundColor:'#2b2b2b',
         paddingVertical:5,
         borderRadius: 5,
-        margin:10,
+        margin:20,
       },
     candleStickText:{
         color: "white", 
@@ -55,6 +55,10 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         marginHorizontal: 10,
         marginTop: 20,
+      },
+      candleStickTextLabel:{
+        color:'grey',
+        fontSize:13,
       }
   });
   

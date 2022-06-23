@@ -9,7 +9,7 @@ const FilterComponent = ({
   setSelectedRange,
 }) => {
   const isFilterSelected = (filter) => filter === selectedRange;
-
+  console.log("pressed");
   return (
     <Pressable
       onPress={() => setSelectedRange(filterDay)}
