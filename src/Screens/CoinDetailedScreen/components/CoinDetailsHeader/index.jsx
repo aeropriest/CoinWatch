@@ -39,7 +39,7 @@ const CoinDetailsHeader = (props) => {
           </Text>
         </View>
       </View>
-      <FontAwesome5 name="user-circle" size={25} color="white" />
+      {/* {<FontAwesome5 name="user-circle" size={25} color="white" />} */}
       <AntDesign
         name={IsCoinWatchListed() ? "star" : "staro"}
         size={25}

@@ -4,6 +4,7 @@ import CoinDetailsHeader from "./components/CoinDetailsHeader";
 import styles from "./styles";
 import { AntDesign } from "@expo/vector-icons";
 import { useRoute } from "@react-navigation/native";
+import { CandleStickIcon } from "../../../assets/CandleStickIcon.svg";
 import {
   getCoinData,
   getCoinMarketData,
@@ -11,9 +12,8 @@ import {
 } from "../../services/CryptoServices";
 import { ActivityIndicator } from "react-native";
 import FilterComponent from "./components/FilterComponent";
-import { LineChart } from "react-native-wagmi-charts";
 import { MaterialIcons } from "@expo/vector-icons";
-import { CandlestickChart } from "react-native-wagmi-charts";
+import { LineChart, CandlestickChart } from "react-native-wagmi-charts";
 
 const filterDays = [
   { filterDay: "1", filterText: "24h" },
@@ -122,17 +122,24 @@ const CoinDetailedScreen = () => {
 
   const formatCurrency = ({ value }) => {
     "worklet";
-    var showPrice = value;
     if (value === "") {
       if (current_price.usd < 1) {
-        return `$${current_price.usd}`;
+        return `$${current_price.usd.toLocaleString("en-US", {
+          currency: "USD",
+        })}`;
       }
-      return `$${current_price.usd.toFixed(2)}`;
+      return `$${current_price.usd
+        .toFixed(2)
+        .toLocaleString("en-US", { currency: "USD" })}`;
     }
     if (current_price.usd < 1) {
-      return `$${parseFloat(value)}`;
+      return `$${parseFloat(value).toLocaleString("en-US", {
+        currency: "USD",
+      })}`;
     }
-    return `$${parseFloat(value).toFixed(2)}`;
+    return `$${parseFloat(value)
+      .toFixed(2)
+      .toLocaleString("en-US", { currency: "USD" })}`;
   };
 
   return (
@@ -271,8 +278,23 @@ const CoinDetailedScreen = () => {
           }))}
         >
           <LineChart height={screenWidth / 2} width={screenWidth}>
-            <LineChart.Path color={chartColor} />
-            <LineChart.CursorCrosshair color={chartColor} />
+            <LineChart.Path color={chartColor} width={0.5} />
+            <LineChart.CursorCrosshair color={chartColor}>
+              <LineChart.Tooltip
+                style={{
+                  color: "red",
+                  backgroundColor: "white",
+                  width: 100,
+                  paddingVertical: 5,
+                  paddingHorizontal: 5,
+                  alignItems: "center",
+                  top: "50%",
+                  borderRadius: 5,
+                  fontWeight: "bold",
+                }}
+              />
+            </LineChart.CursorCrosshair>
+            <LineChart.CursorLine />
           </LineChart>
         </LineChart.Provider>
       )}

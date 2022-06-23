@@ -4,7 +4,8 @@ const styles = StyleSheet.create({
         color:'white',  
         fontSize: 18,
         fontWeight:'600', 
-        letterSpacing:1
+        letterSpacing:1,
+        paddingVertical :5,
     },
     name:{
         color:'white', 
