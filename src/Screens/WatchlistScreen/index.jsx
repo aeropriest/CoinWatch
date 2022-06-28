@@ -4,8 +4,10 @@ import { useWatchList } from "../../Context/WatchListContext";
 import CoinItem from "../../components/CoinItem";
 import { getWatchListData } from "../../services/CryptoServices";
 import { RefreshControl } from "react-native";
+import { useTheme } from "@react-navigation/native";
 
 const WatchlistScreen = () => {
+  const colors = useTheme();
   const { watchListCoinsId } = useWatchList();
 
   const [coinsData, setCoinsData] = useState([]);

@@ -1,5 +1,11 @@
 import React from "react";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import {
+  createNativeStackNavigator,
+  NavigationContainer,
+  DefaultTheme,
+  DarkTheme,
+  useTheme,
+} from "@react-navigation/native-stack";
 import CoinDetailedScreen from "../Screens/CoinDetailedScreen";
 import BottomTabNavigator from "./BottomTabNavigator";
 import AddNewAssetScreen from "../Screens/AddNewAssetScreen";
@@ -7,7 +13,7 @@ const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
   return (
-    <Stack.Navigator initialRouteName="Root">
+    <Stack.Navigator initialRouteName="Root" theme={DarkTheme}>
       <Stack.Screen
         name="Root"
         component={BottomTabNavigator}

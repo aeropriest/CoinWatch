@@ -13,10 +13,11 @@ import { useRecoilState } from "recoil";
 import { allSavedPortfolioAssets } from "../../atoms/PortfolioAssets";
 import { getAllCoins, getCoinInfo } from "../../services/CryptoServices";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useTheme } from "@react-navigation/native";
 import uuid from "react-native-uuid";
 
 const AddNewAssetScreen = () => {
+  const { colors } = useTheme();
   const [allCoins, setAllCoins] = useState([]);
   const [boughtAssetQuantity, setBoughtAssetQuantity] = useState("");
   const [loading, setLoading] = useState(false);

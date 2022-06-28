@@ -1,6 +1,7 @@
 import { Text, Pressable } from "react-native";
 import React, { memo } from "react";
 import styles from "./styles";
+import { useTheme } from "@react-navigation/native";
 
 const FilterComponent = ({
   filterDay,
@@ -8,8 +9,10 @@ const FilterComponent = ({
   selectedRange,
   setSelectedRange,
 }) => {
+  const { colors } = useTheme();
+
   const isFilterSelected = (filter) => filter === selectedRange;
-  console.log("pressed");
+
   return (
     <Pressable
       onPress={() => setSelectedRange(filterDay)}
@@ -17,12 +20,16 @@ const FilterComponent = ({
         paddingHorizontal: 10,
         paddingVertical: 5,
         backgroundColor: isFilterSelected(filterDay)
-          ? "#1e1e1e"
+          ? colors.lightText
           : "transparent",
         borderRadius: 5,
       }}
     >
-      <Text style={{ color: isFilterSelected(filterDay) ? "white" : "grey" }}>
+      <Text
+        style={{
+          color: isFilterSelected(filterDay) ? "white" : "grey",
+        }}
+      >
         {filterText}
       </Text>
     </Pressable>

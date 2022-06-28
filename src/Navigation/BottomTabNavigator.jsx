@@ -8,20 +8,24 @@ import { AntDesign } from "@expo/vector-icons";
 import WatchlistScreen from "../Screens/WatchlistScreen";
 import { Foundation } from "@expo/vector-icons";
 import PortfolioScreen from "../Screens/PortfolioScreen";
+import { Ionicons } from "@expo/vector-icons";
+import SettingsScreen from "../Screens/SettingsScreen";
+import { useTheme } from "@react-navigation/native";
 
 const Tab = createBottomTabNavigator();
 
 const BottomTabNavigator = () => {
+  const { colors } = useTheme();
   return (
     <Tab.Navigator
       initialRouteName="HomeScreen"
       screenOptions={{
         headerRight: "280",
         headerShown: false,
-        tabBarActiveTintColor: "white",
-        tabBarInactiveTintColor: "grey",
+        tabBarActiveTintColor: colors.text,
+        tabBarInactiveTintColor: colors.lightText,
         tabBarStyle: {
-          backgroundColor: "#181818",
+          backgroundColor: colors.darkBackground,
         },
       }}
     >
@@ -53,6 +57,15 @@ const BottomTabNavigator = () => {
         options={{
           tabBarIcon: ({ focused, color }) => (
             <AntDesign name="star" size={focused ? 30 : 24} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Settings"
+        component={SettingsScreen}
+        options={{
+          tabBarIcon: ({ focused, color }) => (
+            <Ionicons name="settings" size={focused ? 30 : 24} color={color} />
           ),
         }}
       />

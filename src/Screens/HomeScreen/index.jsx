@@ -4,8 +4,11 @@ import CoinItem from "../../components/CoinItem";
 import { RefreshControl } from "react-native";
 import { useEffect, useState } from "react";
 import { getCryptoCurrencies } from "../../services/CryptoServices";
+import styles from "./styles";
+import { useTheme } from "@react-navigation/native";
 
 const HomeScreen = () => {
+  const { colors } = useTheme();
   const [coinsList, setCoinsList] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -31,30 +34,24 @@ const HomeScreen = () => {
 
   return (
     <View>
-      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-        <Text
-          style={{
-            fontFamily: "DroidSans",
-            color: "white",
-            fontSize: 24,
-            letterSpacing: 1,
-            paddingHorizontal: 20,
-            paddingBottom: 5,
-            paddingTop: 15,
-          }}
-        >
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          paddingLeft: 15,
+          paddingBottom: 10,
+          paddingRight: 15,
+          alignContent: "center",
+        }}
+      >
+        <Text style={{ ...styles.header, color: colors.text }}>
           Crypto Assets
         </Text>
         <Text
           style={{
-            fontFamily: "DroidSans",
-            color: "lightgrey",
-            fontSize: 10,
-            letterSpacing: 0,
-            paddingHorizontal: 20,
-            paddingBottom: 5,
-            paddingTop: 15,
-            alignSelf: "center",
+            ...styles.subheader,
+            color: colors.lightText,
+            paddingTop: 5,
           }}
         >
           Powered by CoinGecko

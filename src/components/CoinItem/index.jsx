@@ -3,8 +3,10 @@ import React from "react";
 import styles from "./styles";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { useTheme } from "@react-navigation/native";
 
 const CoinItem = ({ coinData }) => {
+  const { colors } = useTheme();
   const navigation = useNavigation();
 
   const {
@@ -19,7 +21,7 @@ const CoinItem = ({ coinData }) => {
   } = coinData;
 
   const priceChangeColor =
-    price_change_percentage_24h > 0 ? "#34C759" : "#FF3B30" || "white";
+    price_change_percentage_24h > 0 ? colors.green : colors.red || "white";
 
   const normalizeMarketCap = (market_cap) => {
     if (market_cap > 1e12) {
@@ -53,12 +55,14 @@ const CoinItem = ({ coinData }) => {
         }}
       />
       <View>
-        <Text style={styles.title}>{name}</Text>
+        <Text style={{ ...styles.title, color: colors.text }}>{name}</Text>
         <View style={{ flexDirection: "row" }}>
           <View style={styles.rankContainer}>
             <Text style={styles.rank}>{market_cap_rank}</Text>
           </View>
-          <Text style={styles.text}>{symbol.toUpperCase()}</Text>
+          <Text style={{ ...styles.text, color: colors.text }}>
+            {symbol.toUpperCase()}
+          </Text>
           <AntDesign
             name={price_change_percentage_24h < 0 ? "caretdown" : "caretup"}
             size={10}
@@ -71,10 +75,12 @@ const CoinItem = ({ coinData }) => {
         </View>
       </View>
       <View style={{ marginLeft: "auto", alignItems: "flex-end" }}>
-        <Text style={styles.title}>
+        <Text style={{ ...styles.title, color: colors.text }}>
           ${current_price.toLocaleString("en-US", { currency: "USD" })}
         </Text>
-        <Text style={styles.text}>MCap {normalizeMarketCap(market_cap)}</Text>
+        <Text style={{ ...styles.text, color: colors.lightText }}>
+          MCap {normalizeMarketCap(market_cap)}
+        </Text>
       </View>
     </Pressable>
   );

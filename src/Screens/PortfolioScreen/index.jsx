@@ -1,15 +1,18 @@
 import { View, Text } from "react-native";
 import React, { Suspense } from "react";
 import PortfolioAssetsList from "./Components/PortfolioAssetsList";
+import { useTheme } from "@react-navigation/native";
 
 const PortfolioScreen = () => {
-  console.log("portfolio screen loaded");
+  const { colors } = useTheme();
   return (
     <View style={{ flex: 1 }}>
       <Suspense
-        fallback={<Text style={{ color: "white" }}>Loading please wait</Text>}
+        fallback={
+          <Text style={{ color: colors.background }}>Loading please wait</Text>
+        }
       >
-        <PortfolioAssetsList></PortfolioAssetsList>
+        <PortfolioAssetsList />
       </Suspense>
     </View>
   );
