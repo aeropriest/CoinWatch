@@ -65,7 +65,7 @@ const PortfolioAssetsList = () => {
         }}
         onPress={() => onDeleteAsset(data)}
       >
-        <FontAwesome name="trash-o" size={25} color="white" />
+        <FontAwesome name="trash-o" size={25} color={"white"} />
       </Pressable>
     );
   };
@@ -138,10 +138,12 @@ const PortfolioAssetsList = () => {
       ListFooterComponent={
         <>
           <Pressable
-            style={{ ...styles.buttonContainer, color: colors.backgroundColor }}
+            style={{ ...styles.buttonContainer, color: colors.background }}
             onPress={() => navigation.navigate("AddNewAssetScreen")}
           >
-            <Text style={{ ...styles.buttonText, color: colors.text }}>
+            <Text
+              style={{ ...styles.buttonText, color: colors.buttonTextColor }}
+            >
               Add New Asset
             </Text>
           </Pressable>

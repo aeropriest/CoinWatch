@@ -16,13 +16,15 @@ const PortfolioAssetItem = ({ assetItem }) => {
     },
     title: {
       color: "white",
-      fontWeight: "bold",
+      fontWeight: "600",
       fontSize: 16,
       alignSelf: "flex-end",
+      paddingVertical: 5,
     },
     symbol: {
       color: "grey",
-      fontWeight: "600",
+      fontWeight: "400",
+      fontSize: 12,
     },
     qtyContainer: {
       marginLeft: "auto",
@@ -49,7 +51,13 @@ const PortfolioAssetItem = ({ assetItem }) => {
   return (
     <View
       style={{
-        ...styles.coinContainer,
+        flexDirection: "row",
+        backgroundColor: colors.background,
+        padding: 15,
+        borderBottomWidth: StyleSheet.hairlineWidth,
+        borderBottomColor: "grey",
+        borderTopColor: "grey",
+        borderTopWidth: StyleSheet.hairlineWidth,
       }}
     >
       <Image

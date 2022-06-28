@@ -1,33 +1,31 @@
 import { View, Text } from "react-native";
 import React, { useEffect, useState } from "react";
 import SwitchToggle from "react-native-switch-toggle";
-import lightMode, { darkMode } from "./styles";
+
 import { useTheme } from "@react-navigation/native";
+import styles from "../HomeScreen/styles";
 const SettingsScreen = () => {
   const [isDark, setIsDark] = useState(false);
   const changeTheme = () => {
     setIsDark((prevIsDark) => !prevIsDark);
   };
   const { colors } = useTheme();
+  console.log(colors);
   return (
-    <View style={isDark ? darkMode.screen : lightMode.screen}>
-      <Text style={{ color: colors.text }}> Settings </Text>
-      <View style={isDark ? darkMode.container : lightMode.container}>
-        <Text
-          style={{
-            ...(isDark ? darkMode.text : lightMode.text),
-            paddingLeft: 8,
-          }}
-        >
+    <View
+      style={{ ...styles.container, backgroundColor: colors.darkBackground }}
+    >
+      <Text style={{ ...styles.text }}> Settings </Text>
+      <View style={{ ...styles.switchContainer }}>
+        <Text style={{ ...styles.text, paddingLeft: 8, color: colors.text }}>
           Theme
         </Text>
-        <View
-          style={isDark ? darkMode.switchContainer : lightMode.switchContainer}
-        >
+        <View style={{ ...styles.switchContainer }}>
           <Text
             style={{
-              ...(isDark ? darkMode.text : lightMode.text),
+              ...styles.text,
               paddingRight: 10,
+              color: colors.text,
             }}
           >
             Dark
@@ -41,18 +39,15 @@ const SettingsScreen = () => {
               circleColorOff="black"
               circleColorOn="white"
               borderColor="red"
-              containerStyle={
-                isDark ? darkMode.toggleContainer : lightMode.toggleContainer
-              }
-              circleStyle={
-                isDark ? darkMode.toggleCircle : lightMode.toggleCircle
-              }
+              containerStyle={styles.toggleContainer}
+              circleStyle={styles.toggleCircle}
             />
           </View>
           <Text
             style={{
-              ...(isDark ? darkMode.text : lightMode.text),
+              ...styles.text,
               paddingLeft: 10,
+              color: colors.text,
             }}
           >
             Light

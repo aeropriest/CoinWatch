@@ -76,7 +76,6 @@ const AddNewAssetScreen = () => {
     const jsonValue = JSON.stringify(newAssets);
     await AsyncStorage.setItem("@portfolio_coins", jsonValue);
     setAssetsInStorage(newAssets);
-    console.log("---------onAddNewAsset-------", newAssets);
     navigation.goBack();
   };
 
@@ -90,20 +89,25 @@ const AddNewAssetScreen = () => {
         items={allCoins}
         onItemSelect={(item) => setSelectedCoinId(item.id)}
         containerStyle={styles.dropdownContainer}
-        itemStyle={styles.item}
-        itemTextStyle={{ color: "white" }}
+        itemStyle={{
+          ...styles.item,
+          backgroundColor: colors.backgroundColor,
+          borderColor: colors.text,
+          color: colors.textColor,
+        }}
+        itemTextStyle={{ color: colors.text }}
         resetValue={false}
         placeholder={selectedCoinId || "Select a coin..."}
-        placeholderTextColor="white"
+        placeholderTextColor={colors.text}
         textInputProps={{
           underlineColorAndroid: "transparent",
           style: {
             padding: 12,
             borderWidth: 1.5,
-            borderColor: "#444444",
+            borderColor: colors.lightText,
             borderRadius: 5,
-            backgroundColor: "#1e1e1e",
-            color: "white",
+            backgroundColor: colors.background,
+            color: colors.text,
           },
         }}
       />
@@ -112,17 +116,17 @@ const AddNewAssetScreen = () => {
           <View style={styles.boughtQuantityContainer}>
             <View style={{ flexDirection: "row" }}>
               <TextInput
-                style={{ color: "white", fontSize: 90 }}
+                style={{ color: colors.text, fontSize: 90 }}
                 value={boughtAssetQuantity}
                 placeholder="0"
                 keyboardType="numeric"
                 onChangeText={setBoughtAssetQuantity}
               />
-              <Text style={styles.ticker}>
+              <Text style={{ ...styles.ticker, color: colors.text }}>
                 {selectedCoin.symbol.toUpperCase()}
               </Text>
             </View>
-            <Text style={styles.pricePerCoin}>
+            <Text style={{ ...styles.pricePerCoin, color: colors.lightText }}>
               ${selectedCoin.market_data.current_price.usd} per coin
             </Text>
           </View>
@@ -137,7 +141,7 @@ const AddNewAssetScreen = () => {
             <Text
               style={{
                 ...styles.buttonText,
-                color: isQuantityEntered() ? "grey" : "white",
+                color: colors.buttonTextColor,
               }}
             >
               Add {boughtAssetQuantity} {selectedCoin.symbol.toUpperCase()}

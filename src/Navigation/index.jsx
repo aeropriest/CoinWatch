@@ -1,19 +1,22 @@
 import React from "react";
-import {
-  createNativeStackNavigator,
-  NavigationContainer,
-  DefaultTheme,
-  DarkTheme,
-  useTheme,
-} from "@react-navigation/native-stack";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import CoinDetailedScreen from "../Screens/CoinDetailedScreen";
 import BottomTabNavigator from "./BottomTabNavigator";
 import AddNewAssetScreen from "../Screens/AddNewAssetScreen";
+import { useTheme } from "@react-navigation/native";
 const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
+  const colors = useTheme();
+  let background = "#ffffff";
+  let tint = "#121212";
+  if (colors.dark) {
+    background = "#121212";
+    tint = "#ffffff";
+  }
+  console.log(colors, background, tint);
   return (
-    <Stack.Navigator initialRouteName="Root" theme={DarkTheme}>
+    <Stack.Navigator initialRouteName="Root">
       <Stack.Screen
         name="Root"
         component={BottomTabNavigator}
@@ -30,9 +33,9 @@ const Navigation = () => {
         options={{
           title: "Add New Asset",
           headerStyle: {
-            backgroundColor: "#121212",
+            backgroundColor: background,
           },
-          headerTintColor: "white",
+          headerTintColor: tint,
           headerTitleStyle: { fontWeight: "bold" },
         }}
       />

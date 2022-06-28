@@ -28,10 +28,10 @@ export default function App() {
   if (!fontsLoaded) return <ActivityIndicator size="large"></ActivityIndicator>;
 
   return (
-    <NavigationContainer theme={lightTheme}>
+    <NavigationContainer theme={darkTheme}>
       <RecoilRoot>
         <WatchListProvider>
-          <View style={lightTheme.container}>
+          <View style={darkTheme.container}>
             <Navigation />
             <StatusBar style="light" />
           </View>
@@ -86,6 +86,7 @@ const lightTheme = {
     lightText: "#121212",
     red: "#FF3B30",
     green: "#34C759",
+    buttonTextColor: "#ffffff",
   },
   container: {
     flex: 1,
@@ -95,7 +96,7 @@ const lightTheme = {
 };
 
 const darkTheme = {
-  dark: false,
+  dark: true,
   colors: {
     darkBackground: "#181818",
     background: "#121212",
@@ -103,6 +104,7 @@ const darkTheme = {
     lightText: "#dddddd",
     red: "#FF3B30",
     green: "#34C759",
+    buttonTextColor: "#ffffff",
   },
   container: {
     flex: 1,
