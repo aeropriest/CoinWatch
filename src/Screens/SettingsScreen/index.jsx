@@ -1,35 +1,21 @@
-import { View, Text, Switch } from "react-native";
-import React, { useEffect, useState, useContext } from "react";
-import SwitchToggle from "react-native-switch-toggle";
+import { View, Text } from "react-native";
+import React, { useContext, useState } from "react";
+import themeContext from "../../config/themeContext";
 import { StyleSheet } from "react-native";
-
+import SwitchToggle from "react-native-switch-toggle";
 import styles from "./styles";
 import { EventRegister } from "react-native-event-listeners";
-import themeContext from "./../../config/themeContext";
 
 const SettingsScreen = () => {
-  const [mode, setMode] = useState(false);
   const theme = useContext(themeContext);
-
+  const [mode, setMode] = useState(false);
   const changeThemeColors = () => {
     setMode(!mode);
     EventRegister.emit("changeTheme", mode);
   };
 
   return (
-    <View style={{ background: "red", flex: 1 }}>
-      <Text
-        style={{
-          fontFamily: "DroidSans",
-          fontSize: 24,
-          letterSpacing: 1,
-          color: theme.color,
-          alignSelf: "center",
-          paddingBottom: 20,
-        }}
-      >
-        Settings
-      </Text>
+    <View style={{ backgroundColor: theme.background, flex: 1 }}>
       <View
         style={{
           flexDirection: "row",
@@ -60,19 +46,18 @@ const SettingsScreen = () => {
           >
             Dark
           </Text>
-          <View style={{ paddingBottom: 1 }}>
-            <SwitchToggle
-              switchOn={mode}
-              onPress={() => changeThemeColors()}
-              backgroundColorOn="grey"
-              backgroundColorOff="grey"
-              circleColorOff="black"
-              circleColorOn="white"
-              borderColor="red"
-              containerStyle={styles.toggleContainer}
-              circleStyle={styles.toggleCircle}
-            />
-          </View>
+          <SwitchToggle
+            switchOn={mode}
+            onPress={() => changeThemeColors()}
+            backgroundColorOn="grey"
+            backgroundColorOff="grey"
+            circleColorOff={theme.background}
+            circleColorOn="white"
+            borderColor="red"
+            containerStyle={styles.toggleContainer}
+            circleStyle={styles.toggleCircle}
+          />
+
           <Text
             style={{
               color: theme.color,

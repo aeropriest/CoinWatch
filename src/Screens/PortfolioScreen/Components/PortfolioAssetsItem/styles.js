@@ -11,10 +11,12 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 16,
     alignSelf: "flex-end",
+    paddingBottom: 5,
   },
   symbol: {
     color: "grey",
     fontWeight: "600",
+    paddingBottom: 2,
   },
   qtyContainer: {
     marginLeft: "auto",

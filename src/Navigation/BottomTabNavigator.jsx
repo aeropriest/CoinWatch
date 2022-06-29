@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { Profiler, useContext } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../Screens/HomeScreen";
 import { Entypo } from "@expo/vector-icons";
@@ -9,7 +9,7 @@ import PortfolioScreen from "../Screens/PortfolioScreen";
 import { Ionicons } from "@expo/vector-icons";
 import SettingsScreen from "../Screens/SettingsScreen";
 import themeContext from "./../config/themeContext";
-
+import ProfileScreen from "./../Screens/ProfileScreen";
 const Tab = createBottomTabNavigator();
 
 const BottomTabNavigator = () => {

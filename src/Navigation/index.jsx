@@ -8,12 +8,6 @@ const Stack = createNativeStackNavigator();
 
 const Navigation = () => {
   const theme = useContext(themeContext);
-  let background = "blue";
-  let tint = "#121212";
-  if (theme.dark) {
-    background = "#121212";
-    tint = "#ffffff";
-  }
   return (
     <Stack.Navigator initialRouteName="Root">
       <Stack.Screen
@@ -34,7 +28,7 @@ const Navigation = () => {
           headerStyle: {
             backgroundColor: theme.background,
           },
-          headerTintColor: theme.background,
+          headerTintColor: theme.color,
           headerTitleStyle: { fontWeight: "bold" },
         }}
       />

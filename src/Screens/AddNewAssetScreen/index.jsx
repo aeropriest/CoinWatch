@@ -82,78 +82,85 @@ const AddNewAssetScreen = () => {
   };
 
   return (
-    <KeyboardAvoidingView
-      style={{ flex: 1 }}
-      keyboardVerticalOffset={120}
-      behavior={Platform.os === "ios" ? "padding" : "height"}
-    >
-      <SearchableDropdown
-        items={allCoins}
-        onItemSelect={(item) => setSelectedCoinId(item.id)}
-        containerStyle={styles.dropdownContainer}
-        itemStyle={{
-          ...styles.item,
-          backgroundColor: theme.background,
-          borderColor: theme.lighter,
-          color: theme.color,
-        }}
-        itemTextStyle={{ color: theme.color }}
-        resetValue={false}
-        placeholder={selectedCoinId || "Select a coin..."}
-        placeholderTextColor={theme.color}
-        textInputProps={{
-          underlineColorAndroid: "transparent",
-          style: {
-            padding: 12,
-            borderWidth: 1.5,
-            borderColor: theme.lighter,
-            borderRadius: 5,
+    <View style={{ flex: 1, backgroundColor: theme.background }}>
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        keyboardVerticalOffset={120}
+        behavior={Platform.os === "ios" ? "padding" : "height"}
+      >
+        <SearchableDropdown
+          items={allCoins}
+          onItemSelect={(item) => setSelectedCoinId(item.id)}
+          containerStyle={styles.dropdownContainer}
+          itemStyle={{
+            ...styles.item,
             backgroundColor: theme.background,
+            borderColor: theme.lighter,
             color: theme.color,
-          },
-        }}
-      />
-      {selectedCoin && (
-        <>
-          <View style={styles.boughtQuantityContainer}>
-            <View style={{ flexDirection: "row" }}>
-              <TextInput
-                style={{ color: theme.color, fontSize: 90 }}
-                value={boughtAssetQuantity}
-                placeholder="0"
-                keyboardType="numeric"
-                onChangeText={setBoughtAssetQuantity}
-              />
-              <Text style={{ ...styles.ticker, color: theme.color }}>
-                {selectedCoin.symbol.toUpperCase()}
-              </Text>
-            </View>
-            <Text style={{ ...styles.pricePerCoin, color: theme.lighter }}>
-              ${selectedCoin.market_data.current_price.usd} per coin
-            </Text>
-          </View>
-          <Pressable
-            style={{
-              ...styles.buttonContainer,
-              backgroundColor: isQuantityEntered()
-                ? theme.disabled
-                : theme.buttonColor,
-            }}
-            onPress={onAddNewAsset}
-            disabled={isQuantityEntered()}
-          >
-            <Text
+          }}
+          itemTextStyle={{ color: theme.color }}
+          resetValue={false}
+          placeholder={selectedCoinId || "Select a coin..."}
+          placeholderTextColor={theme.color}
+          textInputProps={{
+            underlineColorAndroid: "transparent",
+            style: {
+              padding: 12,
+              borderWidth: 1.5,
+              borderColor: theme.lighter,
+              borderRadius: 5,
+              backgroundColor: theme.background,
+              color: theme.color,
+            },
+          }}
+        />
+        {selectedCoin && (
+          <>
+            <View
               style={{
-                ...styles.buttonText,
-                color: theme.buttonText,
+                ...styles.boughtQuantityContainer,
+                backgroundColor: theme.background,
               }}
             >
-              Add {boughtAssetQuantity} {selectedCoin.symbol.toUpperCase()}
-            </Text>
-          </Pressable>
-        </>
-      )}
-    </KeyboardAvoidingView>
+              <View style={{ flexDirection: "row" }}>
+                <TextInput
+                  style={{ color: theme.color, fontSize: 90 }}
+                  value={boughtAssetQuantity}
+                  placeholder="0"
+                  keyboardType="numeric"
+                  onChangeText={setBoughtAssetQuantity}
+                />
+                <Text style={{ ...styles.ticker, color: theme.color }}>
+                  {selectedCoin.symbol.toUpperCase()}
+                </Text>
+              </View>
+              <Text style={{ ...styles.pricePerCoin, color: theme.lighter }}>
+                ${selectedCoin.market_data.current_price.usd} per coin
+              </Text>
+            </View>
+            <Pressable
+              style={{
+                ...styles.buttonContainer,
+                backgroundColor: isQuantityEntered()
+                  ? theme.disabled
+                  : theme.buttonColor,
+              }}
+              onPress={onAddNewAsset}
+              disabled={isQuantityEntered()}
+            >
+              <Text
+                style={{
+                  ...styles.buttonText,
+                  color: theme.buttonText,
+                }}
+              >
+                Add {boughtAssetQuantity} {selectedCoin.symbol.toUpperCase()}
+              </Text>
+            </Pressable>
+          </>
+        )}
+      </KeyboardAvoidingView>
+    </View>
   );
 };
 
