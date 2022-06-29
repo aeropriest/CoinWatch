@@ -14,7 +14,6 @@ const Navigation = () => {
     background = "#121212";
     tint = "#ffffff";
   }
-  console.log(colors, background, tint);
   return (
     <Stack.Navigator initialRouteName="Root">
       <Stack.Screen

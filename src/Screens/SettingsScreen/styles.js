@@ -1,15 +1,13 @@
 import { StyleSheet } from "react-native";
-export const styles = StyleSheet.create({
-  screen: {
-    backgroundColor: "#ffffff",
-    flex: 1,
-  },
+const styles = StyleSheet.create({
   container: {
+    backgroundColor: "red",
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: "#121212",
     flexDirection: "row",
     justifyContent: "space-between",
     padding: 15,
+    borderBottomColor: "grey",
+    borderBottomWidth: StyleSheet.hairlineWidth,
   },
   switchContainer: {
     flexDirection: "row",

@@ -30,7 +30,7 @@ const BottomTabNavigator = () => {
       }}
     >
       <Tab.Screen
-        name="HomeScreen"
+        name="Home"
         component={HomeScreen}
         options={{
           tabBarIcon: ({ focused, color }) => (
@@ -39,7 +39,7 @@ const BottomTabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="PortfolioScreen"
+        name="Portfolio"
         component={PortfolioScreen}
         options={{
           tabBarIcon: ({ focused, color }) => (

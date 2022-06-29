@@ -1,39 +1,72 @@
-import { View, Text } from "react-native";
-import React, { useEffect, useState } from "react";
+import { View, Text, Switch } from "react-native";
+import React, { useEffect, useState, useContext } from "react";
 import SwitchToggle from "react-native-switch-toggle";
+import { StyleSheet } from "react-native";
 
 import { useTheme } from "@react-navigation/native";
-import styles from "../HomeScreen/styles";
+import styles from "./styles";
+import { EventRegister } from "react-native-event-listeners";
+import themeContext from "./../../config/themeContext";
+
 const SettingsScreen = () => {
-  const [isDark, setIsDark] = useState(false);
-  const changeTheme = () => {
-    setIsDark((prevIsDark) => !prevIsDark);
-  };
+  const [mode, setMode] = useState(false);
+  const theme = useContext(themeContext);
+
   const { colors } = useTheme();
-  console.log(colors);
+
+  const changeThemeColors = () => {
+    setMode(!mode);
+    EventRegister.emit("changeTheme", mode);
+  };
+
   return (
-    <View
-      style={{ ...styles.container, backgroundColor: colors.darkBackground }}
-    >
-      <Text style={{ ...styles.text }}> Settings </Text>
-      <View style={{ ...styles.switchContainer }}>
-        <Text style={{ ...styles.text, paddingLeft: 8, color: colors.text }}>
-          Theme
-        </Text>
-        <View style={{ ...styles.switchContainer }}>
+    <View>
+      <Text
+        style={{
+          fontFamily: "DroidSans",
+          fontSize: 24,
+          letterSpacing: 1,
+          color: colors.text,
+          alignSelf: "center",
+          paddingBottom: 20,
+        }}
+      >
+        Settings
+      </Text>
+      <View
+        style={{
+          flexDirection: "row",
+          backgroundColor: colors.background,
+          borderBottomWidth: StyleSheet.hairlineWidth,
+          borderBottomColor: "grey",
+          borderTopWidth: StyleSheet.hairlineWidth,
+          borderTopColor: "grey",
+          paddingHorizontal: 15,
+          paddingVertical: 15,
+          justifyContent: "space-between",
+        }}
+      >
+        <Text style={{ color: colors.text, alignSelf: "center" }}>Theme</Text>
+        <View
+          style={{
+            color: colors.text,
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
           <Text
             style={{
-              ...styles.text,
-              paddingRight: 10,
               color: colors.text,
+              alignSelf: "center",
+              paddingRight: 10,
             }}
           >
             Dark
           </Text>
           <View style={{ paddingBottom: 1 }}>
             <SwitchToggle
-              switchOn={isDark}
-              onPress={() => changeTheme()}
+              switchOn={mode}
+              onPress={() => changeThemeColors()}
               backgroundColorOn="grey"
               backgroundColorOff="grey"
               circleColorOff="black"
@@ -45,9 +78,10 @@ const SettingsScreen = () => {
           </View>
           <Text
             style={{
-              ...styles.text,
-              paddingLeft: 10,
               color: colors.text,
+              alignSelf: "flex-end",
+              alignSelf: "center",
+              paddingLeft: 10,
             }}
           >
             Light
