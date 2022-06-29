@@ -2,13 +2,13 @@ import { FlatList, View, Text } from "react-native";
 import React from "react";
 import CoinItem from "../../components/CoinItem";
 import { RefreshControl } from "react-native";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { getCryptoCurrencies } from "../../services/CryptoServices";
 import styles from "./styles";
-import { useTheme } from "@react-navigation/native";
+import themeContext from "./../../config/themeContext";
 
 const HomeScreen = () => {
-  const { colors } = useTheme();
+  const theme = useContext(themeContext);
   const [coinsList, setCoinsList] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -44,13 +44,13 @@ const HomeScreen = () => {
           alignContent: "center",
         }}
       >
-        <Text style={{ ...styles.header, color: colors.text }}>
+        <Text style={{ ...styles.header, color: theme.color }}>
           Crypto Assets
         </Text>
         <Text
           style={{
             ...styles.subheader,
-            color: colors.lightText,
+            color: theme.lighter,
             paddingTop: 5,
           }}
         >

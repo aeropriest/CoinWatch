@@ -3,13 +3,10 @@ import React, { useContext } from "react";
 import styles from "./styles";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
-import { useTheme } from "@react-navigation/native";
 import themeContext from "./../../config/themeContext";
 
 const CoinItem = ({ coinData }) => {
   const theme = useContext(themeContext);
-
-  const { colors } = useTheme();
   const navigation = useNavigation();
 
   const {

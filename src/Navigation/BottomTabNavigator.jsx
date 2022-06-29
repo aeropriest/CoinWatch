@@ -29,16 +29,6 @@ const BottomTabNavigator = () => {
       }}
     >
       <Tab.Screen
-        name="Settings"
-        component={SettingsScreen}
-        options={{
-          tabBarIcon: ({ focused, color }) => (
-            <Ionicons name="settings" size={focused ? 30 : 24} color={color} />
-          ),
-        }}
-      />
-
-      <Tab.Screen
         name="Home"
         component={HomeScreen}
         options={{
@@ -66,6 +56,15 @@ const BottomTabNavigator = () => {
         options={{
           tabBarIcon: ({ focused, color }) => (
             <AntDesign name="star" size={focused ? 30 : 24} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Settings"
+        component={SettingsScreen}
+        options={{
+          tabBarIcon: ({ focused, color }) => (
+            <Ionicons name="settings" size={focused ? 30 : 24} color={color} />
           ),
         }}
       />
