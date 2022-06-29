@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   View,
   Text,
@@ -13,11 +13,13 @@ import { useRecoilState } from "recoil";
 import { allSavedPortfolioAssets } from "../../atoms/PortfolioAssets";
 import { getAllCoins, getCoinInfo } from "../../services/CryptoServices";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useNavigation, useTheme } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import uuid from "react-native-uuid";
+import themeContext from "../../config/themeContext";
 
 const AddNewAssetScreen = () => {
-  const { colors } = useTheme();
+  const theme = useContext(themeContext);
+
   const [allCoins, setAllCoins] = useState([]);
   const [boughtAssetQuantity, setBoughtAssetQuantity] = useState("");
   const [loading, setLoading] = useState(false);
@@ -91,23 +93,23 @@ const AddNewAssetScreen = () => {
         containerStyle={styles.dropdownContainer}
         itemStyle={{
           ...styles.item,
-          backgroundColor: colors.backgroundColor,
-          borderColor: colors.text,
-          color: colors.textColor,
+          backgroundColor: theme.background,
+          borderColor: theme.lighter,
+          color: theme.color,
         }}
-        itemTextStyle={{ color: colors.text }}
+        itemTextStyle={{ color: theme.color }}
         resetValue={false}
         placeholder={selectedCoinId || "Select a coin..."}
-        placeholderTextColor={colors.text}
+        placeholderTextColor={theme.color}
         textInputProps={{
           underlineColorAndroid: "transparent",
           style: {
             padding: 12,
             borderWidth: 1.5,
-            borderColor: colors.lightText,
+            borderColor: theme.lighter,
             borderRadius: 5,
-            backgroundColor: colors.background,
-            color: colors.text,
+            backgroundColor: theme.background,
+            color: theme.color,
           },
         }}
       />
@@ -116,24 +118,26 @@ const AddNewAssetScreen = () => {
           <View style={styles.boughtQuantityContainer}>
             <View style={{ flexDirection: "row" }}>
               <TextInput
-                style={{ color: colors.text, fontSize: 90 }}
+                style={{ color: theme.color, fontSize: 90 }}
                 value={boughtAssetQuantity}
                 placeholder="0"
                 keyboardType="numeric"
                 onChangeText={setBoughtAssetQuantity}
               />
-              <Text style={{ ...styles.ticker, color: colors.text }}>
+              <Text style={{ ...styles.ticker, color: theme.color }}>
                 {selectedCoin.symbol.toUpperCase()}
               </Text>
             </View>
-            <Text style={{ ...styles.pricePerCoin, color: colors.lightText }}>
+            <Text style={{ ...styles.pricePerCoin, color: theme.lighter }}>
               ${selectedCoin.market_data.current_price.usd} per coin
             </Text>
           </View>
           <Pressable
             style={{
               ...styles.buttonContainer,
-              backgroundColor: isQuantityEntered() ? "#303030" : "#4169E1",
+              backgroundColor: isQuantityEntered()
+                ? theme.disabled
+                : theme.buttonColor,
             }}
             onPress={onAddNewAsset}
             disabled={isQuantityEntered()}
@@ -141,7 +145,7 @@ const AddNewAssetScreen = () => {
             <Text
               style={{
                 ...styles.buttonText,
-                color: colors.buttonTextColor,
+                color: theme.buttonText,
               }}
             >
               Add {boughtAssetQuantity} {selectedCoin.symbol.toUpperCase()}

@@ -6,6 +6,9 @@ export const theme = {
     background: "white",
     red: "#FF3B30",
     green: "#34C759",
+    buttonText: "#ffffff",
+    buttonColor: "#4169E1",
+    disabled: "#303030",
     container: {
       flex: 1,
       backgroundColor: "#ffffff",
@@ -17,6 +20,9 @@ export const theme = {
     color: "blue",
     lighter: "#0000cc",
     background: "#181818",
+    buttonText: "#ffffff",
+    buttonColor: "#4169E1",
+    disabled: "#303030",
     red: "#FF3B30",
     green: "#34C759",
 

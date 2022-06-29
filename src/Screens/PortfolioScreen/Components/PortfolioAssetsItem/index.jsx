@@ -1,42 +1,18 @@
 import { View, Text, Image } from "react-native";
-import React from "react";
-//import styles from "./styles";
+import React, { useContext } from "react";
 import { AntDesign } from "@expo/vector-icons";
-import { useTheme } from "@react-navigation/native";
 import { StyleSheet } from "react-native";
+import themeContext from "../../../../config/themeContext";
+import styles from "./styles";
 
 const PortfolioAssetItem = ({ assetItem }) => {
-  const { colors } = useTheme();
-
-  const styles = StyleSheet.create({
-    coinContainer: {
-      flexDirection: "row",
-      padding: 15,
-      backgroundColor: "#ffffff",
-    },
-    title: {
-      color: "white",
-      fontWeight: "600",
-      fontSize: 16,
-      alignSelf: "flex-end",
-      paddingVertical: 5,
-    },
-    symbol: {
-      color: "grey",
-      fontWeight: "400",
-      fontSize: 12,
-    },
-    qtyContainer: {
-      marginLeft: "auto",
-      alignItems: "flex-end",
-    },
-  });
+  const theme = useContext(themeContext);
 
   const totalHolding = () => {
     return (quantityBought * priceBought).toFixed(2);
   };
   const priceChangeColor =
-    priceChangePercentage > 0 ? colors.green : colors.red || "white";
+    priceChangePercentage > 0 ? theme.green : theme.red || "white";
 
   const {
     id,
@@ -52,7 +28,7 @@ const PortfolioAssetItem = ({ assetItem }) => {
     <View
       style={{
         flexDirection: "row",
-        backgroundColor: colors.background,
+        backgroundColor: theme.background,
         padding: 15,
         borderBottomWidth: StyleSheet.hairlineWidth,
         borderBottomColor: "grey",
@@ -67,13 +43,11 @@ const PortfolioAssetItem = ({ assetItem }) => {
         style={{ height: 30, width: 30, marginRight: 10, alignSelf: "center" }}
       />
       <View>
-        <Text style={{ ...styles.title, color: colors.text }}>{name}</Text>
-        <Text style={{ ...styles.symbol, color: colors.lightText }}>
-          {ticker}
-        </Text>
+        <Text style={{ ...styles.title, color: theme.color }}>{name}</Text>
+        <Text style={{ ...styles.symbol, color: theme.lighter }}>{ticker}</Text>
       </View>
       <View style={{ marginLeft: "auto" }}>
-        <Text style={{ ...styles.title, color: colors.text }}>
+        <Text style={{ ...styles.title, color: theme.color }}>
           $
           {priceBought?.toLocaleString("en-US", {
             currency: "USD",
@@ -84,16 +58,14 @@ const PortfolioAssetItem = ({ assetItem }) => {
             name={priceChangePercentage > 0 ? "caretup" : "caretdown"}
             size={10}
             color={
-              priceChangePercentage > 0 ? colors.green : colors.red || "white"
+              priceChangePercentage > 0 ? theme.green : theme.red || "white"
             }
             style={{ alignSelf: "center", marginRight: 5 }}
           />
           <Text
             style={{
               color:
-                priceChangePercentage > 0
-                  ? colors.green
-                  : colors.red || "white",
+                priceChangePercentage > 0 ? theme.green : theme.red || "white",
               fontWeight: "600",
             }}
           >
@@ -102,13 +74,13 @@ const PortfolioAssetItem = ({ assetItem }) => {
         </View>
       </View>
       <View style={styles.qtyContainer}>
-        <Text style={{ ...styles.title, color: colors.text }}>
+        <Text style={{ ...styles.title, color: theme.color }}>
           $
           {totalHolding().toLocaleString("en-US", {
             currency: "USD",
           })}
         </Text>
-        <Text style={{ ...styles.symbol, color: colors.text }}>
+        <Text style={{ ...styles.symbol, color: theme.color }}>
           {quantityBought} {ticker}
         </Text>
       </View>

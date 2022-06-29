@@ -1,5 +1,5 @@
 import { View, Text, FlatList, Pressable } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import { AntDesign } from "@expo/vector-icons";
 import styles from "./styles";
 import PortfolioAssetItem from "../PortfolioAssetsItem";
@@ -12,10 +12,10 @@ import {
   allPortfolioAssets,
   allSavedPortfolioAssets,
 } from "../../../../atoms/PortfolioAssets";
-import { useTheme } from "@react-navigation/native";
+import themeContext from "./../../../../config/themeContext";
 
 const PortfolioAssetsList = () => {
-  const { colors } = useTheme();
+  const theme = useContext(themeContext);
   const navigation = useNavigation();
   const assets = useRecoilValue(allPortfolioAssets);
   const [savedAssets, setSavedAssets] = useRecoilState(allSavedPortfolioAssets);
@@ -58,7 +58,7 @@ const PortfolioAssetsList = () => {
       <Pressable
         style={{
           flex: 1,
-          backgroundColor: colors.red,
+          backgroundColor: theme.red,
           alignItems: "flex-end",
           justifyContent: "center",
           paddingRight: 28,
@@ -80,15 +80,13 @@ const PortfolioAssetsList = () => {
       leftActionValue={200}
       ListHeaderComponent={
         <>
-          <View
-            style={{ ...styles.balanceContainer, color: colors.background }}
-          >
+          <View style={{ ...styles.balanceContainer, color: theme.background }}>
             <View>
-              <Text style={{ ...styles.currentBalance, color: colors.text }}>
+              <Text style={{ ...styles.currentBalance, color: theme.color }}>
                 Current Balance
               </Text>
               <Text
-                style={{ ...styles.currentBalanceValue, color: colors.text }}
+                style={{ ...styles.currentBalanceValue, color: theme.color }}
               >
                 $
                 {getCurrentBalance().toLocaleString("en-US", {
@@ -100,8 +98,8 @@ const PortfolioAssetsList = () => {
                   ...styles.valueChanged,
                   color:
                     getPercetangeChange().toFixed(2) > 0
-                      ? colors.green
-                      : colors.red || "white",
+                      ? theme.green
+                      : theme.red || "white",
                 }}
               >
                 {getCurrentChange().toLocaleString("en-US", {
@@ -115,8 +113,8 @@ const PortfolioAssetsList = () => {
                 ...styles.priceChangeContainer,
                 backgroundColor:
                   getPercetangeChange() > 0
-                    ? colors.green
-                    : colors.red || "white",
+                    ? theme.green
+                    : theme.red || "white",
               }}
             >
               <AntDesign
@@ -130,7 +128,7 @@ const PortfolioAssetsList = () => {
               </Text>
             </View>
           </View>
-          <Text style={{ ...styles.assetsLabel, color: colors.text }}>
+          <Text style={{ ...styles.assetsLabel, color: theme.color }}>
             Your assets
           </Text>
         </>
@@ -138,12 +136,10 @@ const PortfolioAssetsList = () => {
       ListFooterComponent={
         <>
           <Pressable
-            style={{ ...styles.buttonContainer, color: colors.background }}
+            style={{ ...styles.buttonContainer }}
             onPress={() => navigation.navigate("AddNewAssetScreen")}
           >
-            <Text
-              style={{ ...styles.buttonText, color: colors.buttonTextColor }}
-            >
+            <Text style={{ ...styles.buttonText, color: theme.buttonText }}>
               Add New Asset
             </Text>
           </Pressable>
