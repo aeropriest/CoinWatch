@@ -1,7 +1,8 @@
 export const theme = {
   light: {
     theme: "light",
-    color: "black",
+    color: "red",
+    lighter: "#330000",
     background: "white",
     container: {
       flex: 1,
@@ -11,8 +12,9 @@ export const theme = {
   },
   dark: {
     theme: "dark",
-    color: "white",
-    background: "black",
+    color: "blue",
+    lighter: "#0000cc",
+    background: "#181818",
     container: {
       flex: 1,
       backgroundColor: "#121212",

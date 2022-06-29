@@ -3,7 +3,6 @@ import React, { useEffect, useState, useContext } from "react";
 import SwitchToggle from "react-native-switch-toggle";
 import { StyleSheet } from "react-native";
 
-import { useTheme } from "@react-navigation/native";
 import styles from "./styles";
 import { EventRegister } from "react-native-event-listeners";
 import themeContext from "./../../config/themeContext";
@@ -11,8 +10,6 @@ import themeContext from "./../../config/themeContext";
 const SettingsScreen = () => {
   const [mode, setMode] = useState(false);
   const theme = useContext(themeContext);
-
-  const { colors } = useTheme();
 
   const changeThemeColors = () => {
     setMode(!mode);
@@ -26,7 +23,7 @@ const SettingsScreen = () => {
           fontFamily: "DroidSans",
           fontSize: 24,
           letterSpacing: 1,
-          color: colors.text,
+          color: theme.color,
           alignSelf: "center",
           paddingBottom: 20,
         }}
@@ -36,7 +33,7 @@ const SettingsScreen = () => {
       <View
         style={{
           flexDirection: "row",
-          backgroundColor: colors.background,
+          backgroundColor: theme.background,
           borderBottomWidth: StyleSheet.hairlineWidth,
           borderBottomColor: "grey",
           borderTopWidth: StyleSheet.hairlineWidth,
@@ -46,17 +43,17 @@ const SettingsScreen = () => {
           justifyContent: "space-between",
         }}
       >
-        <Text style={{ color: colors.text, alignSelf: "center" }}>Theme</Text>
+        <Text style={{ color: theme.color, alignSelf: "center" }}>Theme</Text>
         <View
           style={{
-            color: colors.text,
+            color: theme.color,
             flexDirection: "row",
             justifyContent: "space-between",
           }}
         >
           <Text
             style={{
-              color: colors.text,
+              color: theme.color,
               alignSelf: "center",
               paddingRight: 10,
             }}
@@ -78,7 +75,7 @@ const SettingsScreen = () => {
           </View>
           <Text
             style={{
-              color: colors.text,
+              color: theme.color,
               alignSelf: "flex-end",
               alignSelf: "center",
               paddingLeft: 10,
