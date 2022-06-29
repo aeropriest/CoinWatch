@@ -4,6 +4,8 @@ export const theme = {
     color: "red",
     lighter: "#330000",
     background: "white",
+    red: "#FF3B30",
+    green: "#34C759",
     container: {
       flex: 1,
       backgroundColor: "#ffffff",
@@ -15,6 +17,9 @@ export const theme = {
     color: "blue",
     lighter: "#0000cc",
     background: "#181818",
+    red: "#FF3B30",
+    green: "#34C759",
+
     container: {
       flex: 1,
       backgroundColor: "#121212",

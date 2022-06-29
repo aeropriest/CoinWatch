@@ -1,11 +1,14 @@
 import { Text, View, Image, Pressable } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./styles";
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { useTheme } from "@react-navigation/native";
+import themeContext from "./../../config/themeContext";
 
 const CoinItem = ({ coinData }) => {
+  const theme = useContext(themeContext);
+
   const { colors } = useTheme();
   const navigation = useNavigation();
 
@@ -21,7 +24,7 @@ const CoinItem = ({ coinData }) => {
   } = coinData;
 
   const priceChangeColor =
-    price_change_percentage_24h > 0 ? colors.green : colors.red || "white";
+    price_change_percentage_24h > 0 ? theme.green : theme.red || "white";
 
   const normalizeMarketCap = (market_cap) => {
     if (market_cap > 1e12) {
@@ -55,12 +58,12 @@ const CoinItem = ({ coinData }) => {
         }}
       />
       <View>
-        <Text style={{ ...styles.title, color: colors.text }}>{name}</Text>
+        <Text style={{ ...styles.title, color: theme.color }}>{name}</Text>
         <View style={{ flexDirection: "row" }}>
           <View style={styles.rankContainer}>
             <Text style={styles.rank}>{market_cap_rank}</Text>
           </View>
-          <Text style={{ ...styles.text, color: colors.text }}>
+          <Text style={{ ...styles.text, color: theme.color }}>
             {symbol.toUpperCase()}
           </Text>
           <AntDesign
@@ -75,10 +78,10 @@ const CoinItem = ({ coinData }) => {
         </View>
       </View>
       <View style={{ marginLeft: "auto", alignItems: "flex-end" }}>
-        <Text style={{ ...styles.title, color: colors.text }}>
+        <Text style={{ ...styles.title, color: theme.color }}>
           ${current_price.toLocaleString("en-US", { currency: "USD" })}
         </Text>
-        <Text style={{ ...styles.text, color: colors.lightText }}>
+        <Text style={{ ...styles.text, color: theme.lighter }}>
           MCap {normalizeMarketCap(market_cap)}
         </Text>
       </View>
