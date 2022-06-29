@@ -5,7 +5,10 @@ import CoinItem from "../../components/CoinItem";
 import { getWatchListData } from "../../services/CryptoServices";
 import { RefreshControl } from "react-native";
 
+import themeContext from "../../config/themeContext";
+
 const WatchlistScreen = () => {
+  const theme = useContext(themeContext);
   const { watchListCoinsId } = useWatchList();
 
   const [coinsData, setCoinsData] = useState([]);
@@ -27,19 +30,22 @@ const WatchlistScreen = () => {
   }, [watchListCoinsId]);
 
   return (
-    <FlatList
-      data={coinsData}
-      renderItem={({ item }) => <CoinItem coinData={item} />}
-      refreshControl={
-        <RefreshControl
-          refreshing={loadingData}
-          tintColor="white"
-          onRefresh={
-            watchListCoinsId.length > 0 ? fetchWatchListCoinsData : null
-          }
-        />
-      }
-    />
+    <View style={{ backgroundColor: theme.background }}>
+      <FlatList
+        background={theme.background}
+        data={coinsData}
+        renderItem={({ item }) => <CoinItem coinData={item} />}
+        refreshControl={
+          <RefreshControl
+            refreshing={loadingData}
+            tintColor={theme.color}
+            onRefresh={
+              watchListCoinsId.length > 0 ? fetchWatchListCoinsData : null
+            }
+          />
+        }
+      />
+    </View>
   );
 };
 

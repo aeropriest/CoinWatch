@@ -19,6 +19,7 @@ const BottomTabNavigator = () => {
     <Tab.Navigator
       initialRouteName="HomeScreen"
       screenOptions={{
+        style: { borderTopWidth: 2 },
         headerRight: "280",
         headerShown: false,
         tabBarActiveTintColor: theme.color,
@@ -33,7 +34,11 @@ const BottomTabNavigator = () => {
         component={HomeScreen}
         options={{
           tabBarIcon: ({ focused, color }) => (
-            <Entypo name="home" size={focused ? 30 : 24} color={color} />
+            <Entypo
+              name="home"
+              size={focused ? 20 : 20}
+              color={focused ? theme.selected : theme.color}
+            />
           ),
         }}
       />
@@ -44,8 +49,8 @@ const BottomTabNavigator = () => {
           tabBarIcon: ({ focused, color }) => (
             <Foundation
               name="graph-pie"
-              size={focused ? 35 : 30}
-              color={color}
+              size={focused ? 25 : 25}
+              color={focused ? theme.selected : theme.color}
             />
           ),
         }}
@@ -55,7 +60,11 @@ const BottomTabNavigator = () => {
         component={WatchlistScreen}
         options={{
           tabBarIcon: ({ focused, color }) => (
-            <AntDesign name="star" size={focused ? 30 : 24} color={color} />
+            <AntDesign
+              name="star"
+              size={focused ? 20 : 20}
+              color={focused ? theme.selected : theme.color}
+            />
           ),
         }}
       />
@@ -64,7 +73,11 @@ const BottomTabNavigator = () => {
         component={SettingsScreen}
         options={{
           tabBarIcon: ({ focused, color }) => (
-            <Ionicons name="settings" size={focused ? 30 : 24} color={color} />
+            <Ionicons
+              name="settings"
+              size={focused ? 20 : 20}
+              color={focused ? theme.selected : theme.color}
+            />
           ),
         }}
       />

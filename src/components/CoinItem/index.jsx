@@ -40,7 +40,7 @@ const CoinItem = ({ coinData }) => {
   };
   return (
     <Pressable
-      style={styles.coinContainer}
+      style={{ ...styles.coinContainer, backgroundColor: theme.background }}
       onPress={() => navigation.navigate("CoinDetailedScreen", { coinId: id })}
     >
       <Image

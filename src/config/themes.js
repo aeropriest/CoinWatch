@@ -1,14 +1,15 @@
 export const theme = {
   light: {
     theme: "light",
-    color: "red",
-    lighter: "#330000",
-    background: "white",
+    color: "#181818",
+    lighter: "#121212",
+    background: "#ffffff",
     red: "#FF3B30",
     green: "#34C759",
     buttonText: "#ffffff",
     buttonColor: "#4169E1",
     disabled: "#303030",
+    selected: "#4169E1",
     container: {
       flex: 1,
       backgroundColor: "#ffffff",
@@ -17,57 +18,20 @@ export const theme = {
   },
   dark: {
     theme: "dark",
-    color: "blue",
-    lighter: "#0000cc",
+    color: "#ffffff",
+    lighter: "#cccccc",
     background: "#181818",
     buttonText: "#ffffff",
     buttonColor: "#4169E1",
+    selected: "#4169E1",
     disabled: "#303030",
     red: "#FF3B30",
     green: "#34C759",
 
     container: {
       flex: 1,
-      backgroundColor: "#121212",
+      backgroundColor: "#181818",
       paddingTop: 50,
     },
   },
 };
-
-// export const lightTheme = {
-//   dark: false,
-//   colors: {
-//     background: "#ffffff",
-//     darkBackground: "#efefef",
-//     text: "#181818",
-//     lightText: "#121212",
-//     red: "#FF3B30",
-//     green: "#34C759",
-//     buttonTextColor: "#ffffff",
-//     primary: "#121212",
-//   },
-//   container: {
-//     flex: 1,
-//     backgroundColor: "#ffffff",
-//     paddingTop: 50,
-//   },
-// };
-
-// export const darkTheme = {
-//   dark: true,
-//   colors: {
-//     darkBackground: "#181818",
-//     background: "#121212",
-//     text: "#ffffff",
-//     lightText: "#dddddd",
-//     red: "#FF3B30",
-//     green: "#34C759",
-//     buttonTextColor: "#ffffff",
-//     primary: "#121212",
-//   },
-//   container: {
-//     flex: 1,
-//     backgroundColor: "#121212",
-//     paddingTop: 50,
-//   },
-// };

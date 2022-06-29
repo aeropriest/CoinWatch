@@ -33,14 +33,12 @@ const HomeScreen = () => {
   }, []);
 
   return (
-    <View>
+    <View style={{ backgroundColor: theme.background }}>
       <View
         style={{
           flexDirection: "row",
           justifyContent: "space-between",
-          paddingLeft: 15,
-          paddingBottom: 10,
-          paddingRight: 15,
+          padding: 20,
           alignContent: "center",
         }}
       >
@@ -64,7 +62,7 @@ const HomeScreen = () => {
         }}
         renderItem={({ item }) => <CoinItem coinData={item} />}
         refreshControl={
-          <RefreshControl refreshing={loading} tintColor="white" />
+          <RefreshControl refreshing={loading} tintColor={theme.color} />
         }
       />
     </View>

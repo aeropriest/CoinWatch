@@ -7,7 +7,7 @@ import themeContext from "./../../config/themeContext";
 const PortfolioScreen = () => {
   const theme = useContext(themeContext);
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ backgroundColor: theme.background, flex: 1 }}>
       <Suspense
         fallback={
           <Text style={{ color: theme.background }}>Loading please wait</Text>

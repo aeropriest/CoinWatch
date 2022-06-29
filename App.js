@@ -31,8 +31,6 @@ export default function App() {
   });
 
   if (!fontsLoaded) return <ActivityIndicator size="large"></ActivityIndicator>;
-  const currentTheme = "!Dark";
-
   return (
     <themeContext.Provider value={mode === true ? theme.dark : theme.light}>
       <NavigationContainer theme={mode === true ? DarkTheme : DefaultTheme}>
@@ -40,11 +38,11 @@ export default function App() {
           <WatchListProvider>
             <View
               style={
-                mode === true ? theme.dark.container : theme.dark.container
+                mode === true ? theme.dark.container : theme.light.container
               }
             >
               <Navigation />
-              <StatusBar style="light" />
+              <StatusBar style={mode === true ? "light" : "dark"} />
             </View>
           </WatchListProvider>
         </RecoilRoot>

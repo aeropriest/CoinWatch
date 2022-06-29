@@ -17,7 +17,7 @@ const SettingsScreen = () => {
   };
 
   return (
-    <View>
+    <View style={{ background: "red", flex: 1 }}>
       <Text
         style={{
           fontFamily: "DroidSans",
