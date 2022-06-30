@@ -138,7 +138,7 @@ const CoinDetailedScreen = () => {
   };
 
   return (
-    <View style={{ paddingHorizontal: 10 }}>
+    <View style={{ paddingHorizontal: 10, backgroundColor: theme.background }}>
       <CoinDetailsHeader
         coinId={id}
         image={small}
@@ -179,7 +179,7 @@ const CoinDetailedScreen = () => {
       <View
         style={{
           ...styles.filtersContainer,
-          backgroundColor: theme.background,
+          backgroundColor: theme.lighter,
         }}
       >
         {filterDays.map((day) => (
@@ -223,9 +223,9 @@ const CoinDetailedScreen = () => {
             <CandlestickChart.Crosshair>
               <CandlestickChart.Tooltip
                 style={{
-                  color: theme.lighter,
+                  color: theme.red,
                   backgroundColor: theme.color,
-                  borderColor: theme.red,
+                  borderColor: "red",
                   width: 100,
                   paddingVertical: 5,
                   paddingHorizontal: 5,
@@ -242,7 +242,7 @@ const CoinDetailedScreen = () => {
               <Text
                 style={{
                   ...styles.candleStickTextLabel,
-                  color: theme.lighter,
+                  color: theme.color,
                 }}
               >
                 Open
@@ -256,47 +256,47 @@ const CoinDetailedScreen = () => {
               <Text
                 style={{
                   ...styles.candleStickTextLabel,
-                  color: theme.lighter,
+                  color: theme.color,
                 }}
               >
                 High
               </Text>
               <CandlestickChart.PriceText
                 type="high"
-                style={{ ...styles.candleStickText, color: theme.lighter }}
+                style={{ ...styles.candleStickText, color: theme.color }}
               />
             </View>
             <View>
               <Text
                 style={{
                   ...styles.candleStickTextLabel,
-                  color: theme.lighter,
+                  color: theme.color,
                 }}
               >
                 Low
               </Text>
               <CandlestickChart.PriceText
                 type="low"
-                style={{ ...styles.candleStickText, color: theme.lighter }}
+                style={{ ...styles.candleStickText, color: theme.color }}
               />
             </View>
             <View>
               <Text
                 style={{
                   ...styles.candleStickTextLabel,
-                  color: theme.lighter,
+                  color: theme.color,
                 }}
               >
                 Close
               </Text>
               <CandlestickChart.PriceText
                 type="close"
-                style={{ ...styles.candleStickText, color: theme.lighter }}
+                style={{ ...styles.candleStickText, color: theme.color }}
               />
             </View>
           </View>
           <CandlestickChart.DatetimeText
-            style={{ color: theme.lighter, fontWeight: "700", margin: 10 }}
+            style={{ color: theme.color, fontWeight: "300", margin: 10 }}
           />
         </CandlestickChart.Provider>
       ) : (
@@ -345,7 +345,7 @@ const CoinDetailedScreen = () => {
           />
         </View>
         <View style={{ flexDirection: "row", flex: 1 }}>
-          <Text style={{ color: theme.lighter, alignSelf: "center" }}>USD</Text>
+          <Text style={{ color: theme.color, alignSelf: "center" }}>USD</Text>
           <TextInput
             style={{
               ...styles.input,

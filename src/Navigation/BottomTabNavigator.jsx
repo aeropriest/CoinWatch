@@ -9,7 +9,6 @@ import PortfolioScreen from "../Screens/PortfolioScreen";
 import { Ionicons } from "@expo/vector-icons";
 import SettingsScreen from "../Screens/SettingsScreen";
 import themeContext from "./../config/themeContext";
-import ProfileScreen from "./../Screens/ProfileScreen";
 const Tab = createBottomTabNavigator();
 
 const BottomTabNavigator = () => {

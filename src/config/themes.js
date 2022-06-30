@@ -2,7 +2,8 @@ export const theme = {
   light: {
     theme: "light",
     color: "#181818",
-    lighter: "#121212",
+    lighter: "#dddddd",
+    darker: "#222222",
     background: "#ffffff",
     red: "#FF3B30",
     green: "#34C759",
@@ -19,7 +20,8 @@ export const theme = {
   dark: {
     theme: "dark",
     color: "#ffffff",
-    lighter: "#cccccc",
+    darker: "#000000",
+    lighter: "#777777",
     background: "#181818",
     buttonText: "#ffffff",
     buttonColor: "#4169E1",
